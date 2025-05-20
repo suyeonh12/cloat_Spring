@@ -8,6 +8,7 @@
 			<ul class="form_ul">
 				<li>
 					<small class="s_info c_red">* 필수입력</small>
+					<!-- 기본 회원등급 value 값으로 지정 ? -->
 					<input type="hidden" name="user_type" value="2" placeholder="">
 					<span class="form_label">ID</span>
 					<input id="inputid" type="text" name="id" placeholder="ID를 입력하세요" class="ipt_tt" required>
@@ -15,7 +16,7 @@
 				</li>
 				<li>
 					<span class="form_label">PW</span>
-					<input type="password" name="pw" placeholder="PW를 입력하세요" class="ipt_tt" required>
+					<input type="password" name="pw" placeholder="영문/숫자/특수문자 조합 8자 이상" class="ipt_tt" required>
 				</li>
 				<li>
 					<span class="form_label">이름</span>
