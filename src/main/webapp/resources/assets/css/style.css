@@ -16,7 +16,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 ul, dl,dt,dd {margin:0;padding:0;list-style:none}
 legend {position:absolute;margin:0;padding:0;font-size:0;line-height:0;text-indent:-9999em;overflow:hidden}
-label, input, button, select, img {vertical-align:middle;font-family:'Pretendard', sans-serif;font-size: .9rem;}
+label, input, button, select, img {vertical-align:middle;font-family:'Pretendard', sans-serif;font-size: 1rem;}
 input, button {margin:0;padding:0;}
 input[type="submit"] {cursor:pointer}
 /* input:-webkit-autofill,
@@ -40,6 +40,10 @@ a {color:#000;text-decoration:none;}
 a:focus, a:focus-within, a:focus-visible, a:hover {
     color: #000;
     text-decoration: none;
+}
+
+.bttn_sbm:focus, .bttn_sbm:focus-within, .bttn_sbm:focus-visible, .bttn_sbm:hover {
+    color: #fff;
 }
 
 input:focus, input[type=checkbox]:focus, input[type=file]:focus, input[type=radio]:focus,
@@ -112,7 +116,7 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 	background: var(--main);
 	color: white;
     border: none;
-    padding: 4px 12px;
+    padding: 4px 16px;
     border-radius: 2px;	
 }
 .bttn_sbm2{
@@ -513,6 +517,7 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 .bttn_wrap .bttn{
 	padding: 8px;
 	width: 64px;
+	font-size: inherit;
 }
 
 /* 검색창 공통 */
