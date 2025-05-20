@@ -1,3 +1,5 @@
+// 전체 적용되는 공통 js 파일입니다!
+
 // 스크롤시 헤더 고정
 $(window).on('scroll load', function() {
 	if ($(window).scrollTop() > 5) {
