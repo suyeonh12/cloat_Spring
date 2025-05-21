@@ -7,7 +7,7 @@
 		<form action="join_us" method="post">
 			<ul class="form_ul">
 				<li>
-					<small class="s_info c_red">* 필수입력</small>
+					<small class="s_info c_red">* 필수</small>
 					<!-- 기본 회원등급 value 값으로 지정 ? -->
 					<input type="hidden" name="user_type" value="2" placeholder="">
 					<span class="form_label">ID</span>
@@ -23,7 +23,7 @@
 					<input type="text" name="name" placeholder="이름을 입력하세요" class="ipt_tt" required>
 				</li>
 				<li>
-					<small class="s_info c_main">* 선택입력</small>
+					<small class="s_info c_main">* 선택</small>
 					<span class="form_label">이메일</span>
 					<input type="text" name="email" placeholder="이메일을 입력하세요" class="ipt_tt">
 				</li>
