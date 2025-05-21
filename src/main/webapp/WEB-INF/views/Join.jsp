@@ -8,21 +8,62 @@
 			<ul class="form_ul">
 				<li>
 					<small class="s_info c_red">* 필수</small>
+					<div class="agree_box">
+						<div class="agree_top">
+							<div class="chkbox_div">
+								<input type="checkbox" name="chk_1" id="chk_1" required>
+								<label for="chk_1" class="chk_btn"></label>
+								<label for="chk_1" class="chk_txt">이용약관 동의 <span class="c_main">(필수)</span></label>
+							</div>
+							<div class="view_term" onClick="viewTerms(this)">
+								<span>약관 보기</span>
+								<img src="resources/images/play_arrow.svg">
+							</div>						
+						</div>
+						<div class="agree_txt">
+							<!-- 이용약관 파일 가져오기 -->
+							<jsp:include page="/WEB-INF/views/includes/terms_of_use.jsp" />							
+						</div>
+					</div>
+					<div class="agree_box">
+						<div class="agree_top">
+							<div class="chkbox_div">
+								<input type="checkbox" name="chk_2" id="chk_2" required>
+								<label for="chk_2" class="chk_btn"></label>
+								<label for="chk_2" class="chk_txt">개인정보처리방침 동의 <span class="c_main">(필수)</span></label>
+							</div>
+							<div class="view_term" onClick="viewTerms(this)">
+								<span>약관 보기</span>
+								<img src="resources/images/play_arrow.svg">
+							</div>						
+						</div>							
+						<div class="agree_txt">
+							<!-- 개인정보처리방침 파일 가져오기 -->		
+							<jsp:include page="/WEB-INF/views/includes/privacy_policy.jsp" />												
+						</div>
+					</div>
+				</li>			
+				<li>
 					<input type="hidden" name="user_type" value="NORMAL" placeholder="">
-					<span class="form_label">ID</span>
+					<span class="form_label">아이디</span>
 					<input id="inputId" type="text" name="id" placeholder="ID를 입력하세요" class="ipt_tt" required>
-					<span id="idCheckMsg"></span>
+					<small id="idCheckMsg"></small>
 				</li>
 				<li>
-					<span class="form_label">PW</span>
+					<span class="form_label">비밀번호</span>
 					<input id="inputPw" type="password" name="pw" placeholder="영문/숫자/특수문자 조합 8자 이상" class="ipt_tt" required>
+					<small id="pwCheckMsg"></small>
 				</li>
+				<li>
+					<span class="form_label">비밀번호 확인</span>
+					<input id="inputPwChk" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요" class="ipt_tt">
+					<small id="pwMatchMsg"></small>
+				</li>				
 				<li>
 					<span class="form_label">이름</span>
 					<input type="text" name="name" placeholder="이름을 입력하세요" class="ipt_tt" required>
 				</li>
 				<li>
-					<small class="s_info c_main">* 선택</small>
 					<span class="form_label">이메일</span>
 					<input type="text" name="email" placeholder="이메일을 입력하세요" class="ipt_tt">
 				</li>
@@ -31,25 +72,17 @@
 					<input type="text" name="phone" placeholder="전화번호를 입력하세요" class="ipt_tt">
 				</li>
 				<li class="profile">
+					<small class="s_info c_main">* 선택</small>
 					<span class="form_label">프로필 이미지 등록</span>
 					<div class="filebox preview-image">
-						<!-- 개발완료되면 label for="profile_img"로 바꿔주세요, 파일업로드 여는 스위치 역할! -->
-						<label for="sample" class="label_hidden"></label>
+						<label for="profile_img" class="label_hidden"></label>
 						<div class="upload-display">
 							<img src="resources/images/user.png" alt="">
 						</div>
-						<input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
-						<!-- 퍼블 테스트용 / 개발 완료되면 id: profile_img, name : profile_img로 변경하세요 -->
-						<input type="file" id="sample" class="upload-hidden" accept="image/*">
-						<!-- 오류방지용 -->
-						<input type="text" name="profile_img" value="default.jpg" class="" hidden>
-					</div>						
-				</li>
-				<li>
-					<div class="agree_box">
-						약관동의 넣을거임..
+						<input class="upload-name" value="파일선택" disabled="disabled">
+						<input type="file" name="file" id="profile_img" class="upload-hidden" accept="image/*">
 					</div>
-				</li>	
+				</li>								
 				<li>
 					<input type="submit" value="JoinUs" class="bttn bttn_sbm2">
 				</li>	
@@ -58,31 +91,56 @@
 	</div>
 </section>		
 <script>
-function chkPW(){
-
-	 var pw = $("#inputPw").val();
-	 var num = pw.search(/[0-9]/g);
-	 var eng = pw.search(/[a-z]/ig);
-	 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-
-	 if(pw.length < 8 || pw.length > 20){
-
-	  alert("8자리 ~ 20자리 이내로 입력해주세요.");
-	  return false;
-	 }else if(pw.search(/\s/) != -1){
-	  alert("비밀번호는 공백 없이 입력해주세요.");
-	  return false;
-	 }else if(num < 0 || eng < 0 || spe < 0 ){
-	  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
-	  return false;
-	 }else {
-		//console.log("통과"); 
-	    return true;
-	 }
-
+function viewTerms(el){
+	$(el).closest(".agree_box").toggleClass("on");
 }
-	
+
 $(document).ready(function() {
+	
+	//비밀번호 유효성 체크
+	$("#inputPw").on("keyup", function() {
+		var pw = $("#inputPw").val();
+		var num = pw.search(/[0-9]/g);
+		var eng = pw.search(/[a-z]/ig);
+		var spe = pw.search(/[!@#$%^&*(),.?":{}|<>]/g); // 특수문자 재정비
+		var msg = "";
+		
+		if(pw.length < 8 || pw.length > 20){
+			msg = "8~20자리 이내로 입력해주세요.";
+		} else if(num < 0 || eng < 0 || spe < 0){
+			msg = "영문, 숫자, 특수문자를 모두 포함해주세요.";		  
+		} else if(pw.search(/\s/) != -1){
+			msg = "공백 없이 입력해주세요.";
+		} else {
+			msg = "사용 가능한 비밀번호입니다.";
+			$("#pwCheckMsg").css("color", "green");
+			$("#pwCheckMsg").text(msg);
+			return true;
+		}
+		$("#pwCheckMsg").css("color", "red");
+		$("#pwCheckMsg").text(msg);
+		return false;
+	});	
+	
+	// 확인 비밀번호 키 입력 시 일치 여부 확인
+	$("#inputPwChk").on("keyup", function () {
+		const pw = $("#inputPw").val();
+		const pwConfirm = $("#inputPwChk").val();
+		const msg = $("#pwMatchMsg");
+		
+		if (!pwConfirm) {
+		  msg.text("");
+		  return;
+		}
+		
+		if (pw === pwConfirm) {
+		  msg.text("비밀번호가 일치합니다.").css("color", "green");
+		} else {
+		  msg.text("비밀번호가 일치하지 않습니다.").css("color", "red");
+		}
+	});	
+	
+	//이미지 업로드 로직
     var fileTarget = $('.filebox .upload-hidden');
 
     fileTarget.on('change', function() {
