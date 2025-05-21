@@ -23,7 +23,7 @@
 					<input type="text" name="name" placeholder="이름을 입력하세요" class="ipt_tt" required>
 				</li>
 				<li>
-					<small class="s_info c_main">* 선택사항</small>
+					<small class="s_info c_main">* 선택입력</small>
 					<span class="form_label">이메일</span>
 					<input type="text" name="email" placeholder="이메일을 입력하세요" class="ipt_tt">
 				</li>
