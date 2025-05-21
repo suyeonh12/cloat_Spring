@@ -10,12 +10,12 @@
 					<small class="s_info c_red">* 필수</small>
 					<input type="hidden" name="user_type" value="NORMAL" placeholder="">
 					<span class="form_label">ID</span>
-					<input id="inputid" type="text" name="id" placeholder="ID를 입력하세요" class="ipt_tt" required>
+					<input id="inputId" type="text" name="id" placeholder="ID를 입력하세요" class="ipt_tt" required>
 					<span id="idCheckMsg"></span>
 				</li>
 				<li>
 					<span class="form_label">PW</span>
-					<input type="password" name="pw" placeholder="영문/숫자/특수문자 조합 8자 이상" class="ipt_tt" required>
+					<input id="inputPw" type="password" name="pw" placeholder="영문/숫자/특수문자 조합 8자 이상" class="ipt_tt" required>
 				</li>
 				<li>
 					<span class="form_label">이름</span>
@@ -39,10 +39,10 @@
 							<img src="resources/images/user.png" alt="">
 						</div>
 						<input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
-						<!-- 퍼블 테스트용 / 개발 완료되면 id : profile_img로 변경하세요 -->
+						<!-- 퍼블 테스트용 / 개발 완료되면 id: profile_img, name : profile_img로 변경하세요 -->
 						<input type="file" id="sample" class="upload-hidden" accept="image/*">
 						<!-- 오류방지용 -->
-						<input type="text" id="profile_img" value="업로드한 프로필 이미지" class="" hidden>
+						<input type="text" name="profile_img" value="default.jpg" class="" hidden>
 					</div>						
 				</li>
 				<li>
@@ -58,6 +58,30 @@
 	</div>
 </section>		
 <script>
+function chkPW(){
+
+	 var pw = $("#inputPw").val();
+	 var num = pw.search(/[0-9]/g);
+	 var eng = pw.search(/[a-z]/ig);
+	 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+	 if(pw.length < 8 || pw.length > 20){
+
+	  alert("8자리 ~ 20자리 이내로 입력해주세요.");
+	  return false;
+	 }else if(pw.search(/\s/) != -1){
+	  alert("비밀번호는 공백 없이 입력해주세요.");
+	  return false;
+	 }else if(num < 0 || eng < 0 || spe < 0 ){
+	  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
+	  return false;
+	 }else {
+		//console.log("통과"); 
+	    return true;
+	 }
+
+}
+	
 $(document).ready(function() {
     var fileTarget = $('.filebox .upload-hidden');
 
