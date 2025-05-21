@@ -15,7 +15,7 @@
 					<input type="password" name="pw" placeholder="PW를 입력해주세요" class="ipt_tt" required>
 				</li>
 				<li>
-					<input type="submit" value="로그인" class="bttn bttn_sbm2">
+					<input type="submit" value="LogIn" class="bttn bttn_sbm2">
 				</li>
 			</ul>
 		</form>

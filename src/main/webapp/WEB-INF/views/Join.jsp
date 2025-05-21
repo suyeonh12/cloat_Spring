@@ -1,15 +1,14 @@
-<%@include file="/WEB-INF/views/includes/header.jsp"%>
+<%@include file="/WEB-INF/views/includes/header.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <section class="content join">
 	<div class="inner inner_500">
 		<h2 class="page_name2">회원가입</h2>
-		<form action="join_us" method="post">
+		<form action="join_us" method="post" enctype="multipart/form-data">
 			<ul class="form_ul">
 				<li>
 					<small class="s_info c_red">* 필수</small>
-					<!-- 기본 회원등급 value 값으로 지정 ? -->
-					<input type="hidden" name="user_type" value="2" placeholder="">
+					<input type="hidden" name="user_type" value="NORMAL" placeholder="">
 					<span class="form_label">ID</span>
 					<input id="inputid" type="text" name="id" placeholder="ID를 입력하세요" class="ipt_tt" required>
 					<span id="idCheckMsg"></span>
@@ -34,19 +33,111 @@
 				<li class="profile">
 					<span class="form_label">프로필 이미지 등록</span>
 					<div class="filebox preview-image">
-						<label for="profile_img" class="label_hidden"></label>
+						<!-- 개발완료되면 label for="profile_img"로 바꿔주세요, 파일업로드 여는 스위치 역할! -->
+						<label for="sample" class="label_hidden"></label>
 						<div class="upload-display">
-							<img src="${pageContext.request.contextPath}/resources/images/user.png" alt="">
+							<img src="resources/images/user.png" alt="">
 						</div>
 						<input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
-						<input type="file" id="profile_img" class="upload-hidden">
+						<!-- 퍼블 테스트용 / 개발 완료되면 id : profile_img로 변경하세요 -->
+						<input type="file" id="sample" class="upload-hidden" accept="image/*">
+						<!-- 오류방지용 -->
+						<input type="text" id="profile_img" value="업로드한 프로필 이미지" class="" hidden>
 					</div>						
+				</li>
+				<li>
+					<div class="agree_box">
+						약관동의 넣을거임..
+					</div>
 				</li>	
 				<li>
-					<input type="submit" value="회원가입" class="bttn bttn_sbm2">
+					<input type="submit" value="JoinUs" class="bttn bttn_sbm2">
 				</li>	
 			</ul>	
 		</form>		
 	</div>
-</section>
-<%@include file="/WEB-INF/views/includes/footer.jsp"%>
+</section>		
+<script>
+$(document).ready(function() {
+    var fileTarget = $('.filebox .upload-hidden');
+
+    fileTarget.on('change', function() {
+        if (window.FileReader) {
+            var filename = $(this)[0].files[0]?.name;
+        } else {
+            var filename = $(this).val().split('/').pop().split('\\').pop();
+        }
+
+        $(this).siblings('.upload-name').val(filename);
+    });
+
+    // 이미지 미리보기 및 유효성 검사 (확장자 & 용량)
+    var imgTarget = $('.preview-image .upload-hidden');
+
+    imgTarget.on('change', function() {
+        var file = $(this)[0].files[0];
+
+        if (!file) return;
+
+        // 이미지 MIME 타입 허용 리스트
+        var validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/bmp'];
+        var maxSize = 5 * 1024 * 1024; // 5MB
+
+        // MIME 타입 검사
+        if (!validTypes.includes(file.type)) {
+            alert('이미지 파일만 업로드할 수 있습니다. (jpg, png, gif, webp 등)');
+            $(this).val('');
+            $(this).siblings('.upload-name').val(''); // 파일명 초기화
+            return;
+        }
+
+        // 파일 용량 검사
+        if (file.size > maxSize) {
+            alert('5MB 이하의 이미지만 업로드할 수 있습니다.');
+            $(this).val('');
+            $(this).siblings('.upload-name').val('');
+            return;
+        }
+
+        var parent = $(this).parent();
+        var uploadDisplay = parent.find('.upload-display');
+        var imgTag = uploadDisplay.find('.upload-thumb');
+
+        if (window.FileReader) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var src = e.target.result;
+
+                if (imgTag.length > 0) {
+                    imgTag.attr('src', src);
+                } else {
+                    uploadDisplay.html(
+                        '<div class="upload-thumb-wrap"><img src="' + src + '" class="upload-thumb"></div>'
+                    );
+                }
+            }
+            reader.readAsDataURL(file);
+        } else {
+            // 구형 브라우저 (IE 대응)
+            $(this)[0].select();
+            $(this)[0].blur();
+            var imgSrc = document.selection.createRange().text;
+
+            if (imgTag.length > 0) {
+                imgTag[0].style.filter =
+                    "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\"" +
+                    imgSrc +
+                    "\")";
+            } else {
+                uploadDisplay.html('<div class="upload-thumb-wrap"><img class="upload-thumb"></div>');
+                uploadDisplay.find('.upload-thumb')[0].style.filter =
+                    "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\"" +
+                    imgSrc +
+                    "\")";
+            }
+        }
+    });
+});
+</script>
+
+<%@include file="/WEB-INF/views/includes/footer.jsp" %>
