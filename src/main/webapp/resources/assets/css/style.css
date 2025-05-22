@@ -1,5 +1,10 @@
 @charset "utf-8";
 
+:root{
+	--main: #2A9D8F;
+	--bg: #fffbee;
+}
+
 /* 초기화 */
 html {overflow-y:scroll;font-size: 1rem;}
 body {margin:0;padding:0;font-size:1rem;font-family:'Paperlogy', sans-serif;background:#fff;color: #000;}
@@ -44,11 +49,6 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 }
 
 /*common*/
-:root{
-	--main: #2A9D8F;
-	--bg: #fffbee;
-}
-
 .stn{
 	background: none;
 	border: 0;
@@ -56,13 +56,13 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 	box-shadow: none;
 }
 
-.c_red{
+.c_red, .c_red:focus, .c_red:focus-within, .c_red:focus-visible, .c_red:hover{
 	color: red;
 }
-.c_main{
+.c_main, .c_main:focus, .c_main:focus-within, .c_main:focus-visible, .c_main:hover{
 	color: var(--main);
 }
-.c_gray{
+.c_gray, .c_gray:focus, .c_gray:focus-within, .c_gray:focus-visible, .c_gray:hover{
 	color: gray;
 }
 .inner{
@@ -91,7 +91,7 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 	gap: 6px;
 }
 .bttn_cancle{
-	background: #d0d0d0;
+	background: #f0f0f0;
 }
 .ipt_tt{
     padding: 12px 14px;
@@ -112,7 +112,9 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
     color: white;
     border-radius: 4px;
     padding: 12px;
-    margin-top: 20px;
+}
+:not(.bttn_wrap) .bttn_smb2{
+	margin-top: 20px;
 }
 .sel{
 	appearance: none;
@@ -252,7 +254,7 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 .content_desc a {color:#333;}
 
 .agree_box.on .view_term img{
-	transform: rotate(0deg);
+	transform: rotate(270deg);
 }
 .agree_box.on .agree_txt{
     height: 0;	
@@ -700,13 +702,16 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 	gap: 6px;
 }
 .tb + .bttn_wrap{
-	margin-top: -14px;
+	margin-top: 10px;
     justify-content: flex-end;	
 }
 .bttn_wrap .bttn{
 	padding: 8px;
-	width: 64px;
 	font-size: inherit;
+}
+
+.board .bttn_wrap .bttn{
+	width: 64px;
 }
 
 /* 검색창 공통 */
@@ -748,10 +753,27 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 .form_ul .ipt_tt{
 	width: 100%;
 }
+.po_rel{
+	position: relative;
+}
+.po_ab{
+	position: absolute;
+}
+.join input[name="id"]{
+	padding-right: 90px;
+}
+.join .bttn.po_ab{
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%); 
+    right: 10px;
+    border-radius: 16px;
+    font-size: 90%;
+}
 .join .profile .form_label{
 	margin-bottom: 10px;
 }
-.join .filebox{
+.profile .filebox{
     max-width: 100%;
     width: 150px;
 	aspect-ratio: 1;
@@ -760,11 +782,11 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
     box-shadow: 0 0 2px rgba(95, 95, 95, 0.4);
 	overflow: hidden;
 }
-.join .filebox .label_hidden{
+.profile .filebox .label_hidden{
 	cursor: pointer;
 	border-radius: 50%;
 }
-.join .filebox .upload-display{
+.profile .filebox .upload-display{
     display: flex;
     align-items: center;
     justify-self: center;
@@ -772,7 +794,7 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 	height: 100%;
 	margin: 0;
 }
-.join .filebox .upload-display img{
+.profile .filebox .upload-display img{
 	width: 100%;
 	height: 100%;
 	object-fit: contain;
@@ -845,9 +867,12 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 /* 마이페이지 */
 .mypage{
 	display: flex;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 1px 1px 2px 2px rgba(95, 95, 95, 0.1);
 }
 .mp_nav{
-    width: 200px;
+    width: 240px;
     background: #fffef9;
     padding: 30px 20px;
 	flex: 0 0 auto;
@@ -881,7 +906,12 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 .mp_menu > li > a{display: block;}
 .mp_cont{
     flex: 1;
-    padding: 16px 24px;	
+    padding: 30px;	
+}
+.mp_tit{
+	font-size: 20px;
+	font-weight: 500;
+	margin-bottom: 12px;
 }
 .no_content{
 	width: 100%;
@@ -889,4 +919,32 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+.mp_cont.edit .form_ul{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-top: 10px;
+}
+.mp_cont.edit .form_ul > li{
+	width: calc(33.33% - 8px);
+}
+.mp_cont.edit .profile .filebox{
+	margin: 0;
+}
+.mp_cont.edit .bttn_wrap{
+	gap: 8px;
+	margin: 16px 0 24px;	
+}
+.mp_cont.edit .bttn_wrap .bttn{
+	padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 4px;
+}
+.mb_out, .mb_out:hover{
+	color: #333;
+	background: none;
+	text-decoration: underline;
+	font-size: 95%;
+	text-underline-offset: 2px;
 }

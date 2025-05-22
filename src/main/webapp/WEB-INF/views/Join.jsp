@@ -1,6 +1,7 @@
 <%@include file="/WEB-INF/views/includes/header.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <section class="content join">
 	<div class="inner inner_500">
 		<h2 class="page_name2">회원가입</h2>
@@ -46,7 +47,10 @@
 				<li>
 					<input type="hidden" name="user_type" value="NORMAL" placeholder="">
 					<span class="form_label">아이디</span>
-					<input id="inputId" type="text" name="id" placeholder="ID를 입력하세요" class="ipt_tt" required>
+					<div class="po_rel">
+						<input id="inputid" type="text" name="id" placeholder="ID를 입력하세요" class="ipt_tt" required>
+						<button type="button" class="bttn po_ab" id="idChkBtn">중복확인</button>					
+					</div>
 					<small id="idCheckMsg"></small>
 				</li>
 				<li>
@@ -84,7 +88,7 @@
 					</div>
 				</li>								
 				<li>
-					<input type="submit" value="JoinUs" class="bttn bttn_sbm2">
+					<input type="submit" value="회원가입" class="bttn bttn_sbm2">
 				</li>	
 			</ul>	
 		</form>		
@@ -95,31 +99,77 @@ function viewTerms(el){
 	$(el).closest(".agree_box").toggleClass("on");
 }
 
+
+// 아이디 유효성 체크
+let hangulcheck = /[ㄱ-ㅎㅏ-ㅣ가-힣]/; // 한글 체크
+let spe = /[~!@#$%^&*|\\'";:/?]/;       // 특수문자 체크 (₩ 제거)
+
+//아이디 중복검사
+$('#idChkBtn').on('click', function() {
+	// 입력된 값에서 공백을 제거하고 나서 id 변수에 저장
+	let id = $("#inputid").val().trim();
+
+    if (id.length < 4) {
+        $("#idCheckMsg").css("color", "red").text("아이디는 4글자 이상 입력해주세요.");
+        return false;
+    } else if (id.search(/\s/) !== -1) {
+        $("#idCheckMsg").css("color", "red").text("아이디는 공백 없이 입력해주세요.");
+        return false;
+    } else if (hangulcheck.test(id)) {
+        $("#idCheckMsg").css("color", "red").text("아이디는 한글을 사용할 수 없습니다.");
+        return false;
+    } else if (spe.test(id)) {
+        $("#idCheckMsg").css("color", "red").text("아이디는 특수문자를 사용할 수 없습니다.");
+        return false;	
+    }else{
+ 	   $.ajax({
+ 	      //url : './IdCheck',
+ 	      url : '${cpath}/IdCheck',
+ 	      type : 'GET', //전송방법
+ 	      data : {
+ 	         id : id //key,value값 json형태
+ 	         // 전송할 데이터
+ 	      },
+ 	      dataType : 'json',
+ 	      success : function(data) {
+ 	         console.log(data)
+ 	         if (data.available) { //true-사용가능
+ 	        	$("#idCheckMsg").css("color", "green");
+ 	            $("#idCheckMsg").text("사용 가능한 ID입니다");
+ 	         } else { //false-중복id
+ 	        	$("#idCheckMsg").css("color", "red");
+ 	            $("#idCheckMsg").text("중복된 ID 입니다");
+ 	         }
+ 	      }
+ 	
+ 	   })   	
+    }
+})
+
 $(document).ready(function() {
 	
 	//비밀번호 유효성 체크
 	$("#inputPw").on("keyup", function() {
-		var pw = $("#inputPw").val();
-		var num = pw.search(/[0-9]/g);
-		var eng = pw.search(/[a-z]/ig);
-		var spe = pw.search(/[!@#$%^&*(),.?":{}|<>]/g); // 특수문자 재정비
-		var msg = "";
-		
-		if(pw.length < 8 || pw.length > 20){
-			msg = "8~20자리 이내로 입력해주세요.";
-		} else if(num < 0 || eng < 0 || spe < 0){
-			msg = "영문, 숫자, 특수문자를 모두 포함해주세요.";		  
-		} else if(pw.search(/\s/) != -1){
-			msg = "공백 없이 입력해주세요.";
-		} else {
-			msg = "사용 가능한 비밀번호입니다.";
-			$("#pwCheckMsg").css("color", "green");
-			$("#pwCheckMsg").text(msg);
-			return true;
-		}
-		$("#pwCheckMsg").css("color", "red");
-		$("#pwCheckMsg").text(msg);
-		return false;
+		let pw = $("#inputPw").val();
+		let reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/; // 숫자/영문자/특수문자 조합 8자리 이상 체크
+		 
+		 if(!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/.test(pw)){ 
+        	$("#pwCheckMsg").css("color", "red");
+            $("#pwCheckMsg").text("비밀번호는 숫자/영문자/특수문자 조합으로 8자리 이상이어야 합니다.");
+            return false;
+		 }else if(pw.search(/\s/) != -1){
+        	$("#pwCheckMsg").css("color", "red");
+            $("#pwCheckMsg").text("비밀번호는 공백 없이 입력해주세요.");
+            return false;
+		 }else if(hangulcheck.test(pw)){
+        	$("#pwCheckMsg").css("color", "red");
+            $("#pwCheckMsg").text("비밀번호는 한글을 사용할 수 없습니다.");
+            return false;
+		 }else {
+        	$("#pwCheckMsg").css("color", "green");
+            $("#pwCheckMsg").text("사용가능한 비밀번호입니다.");			 
+		 	return true;
+		 }
 	});	
 	
 	// 확인 비밀번호 키 입력 시 일치 여부 확인
@@ -141,29 +191,30 @@ $(document).ready(function() {
 	});	
 	
 	//이미지 업로드 로직
-    var fileTarget = $('.filebox .upload-hidden');
+    let fileTarget = $('.filebox .upload-hidden');
+    let filename = "";
 
     fileTarget.on('change', function() {
         if (window.FileReader) {
-            var filename = $(this)[0].files[0]?.name;
+            filename = $(this)[0].files[0]?.name;
         } else {
-            var filename = $(this).val().split('/').pop().split('\\').pop();
+            filename = $(this).val().split('/').pop().split('\\').pop();
         }
 
         $(this).siblings('.upload-name').val(filename);
     });
 
     // 이미지 미리보기 및 유효성 검사 (확장자 & 용량)
-    var imgTarget = $('.preview-image .upload-hidden');
+    let imgTarget = $('.preview-image .upload-hidden');
 
     imgTarget.on('change', function() {
-        var file = $(this)[0].files[0];
+        let file = $(this)[0].files[0];
 
         if (!file) return;
 
         // 이미지 MIME 타입 허용 리스트
-        var validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/bmp'];
-        var maxSize = 5 * 1024 * 1024; // 5MB
+        let validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/bmp'];
+        let maxSize = 5 * 1024 * 1024; // 5MB
 
         // MIME 타입 검사
         if (!validTypes.includes(file.type)) {
@@ -181,14 +232,14 @@ $(document).ready(function() {
             return;
         }
 
-        var parent = $(this).parent();
-        var uploadDisplay = parent.find('.upload-display');
-        var imgTag = uploadDisplay.find('.upload-thumb');
+        let parent = $(this).parent();
+        let uploadDisplay = parent.find('.upload-display');
+        let imgTag = uploadDisplay.find('.upload-thumb');
 
         if (window.FileReader) {
-            var reader = new FileReader();
+            let reader = new FileReader();
             reader.onload = function(e) {
-                var src = e.target.result;
+                let src = e.target.result;
 
                 if (imgTag.length > 0) {
                     imgTag.attr('src', src);
@@ -203,7 +254,7 @@ $(document).ready(function() {
             // 구형 브라우저 (IE 대응)
             $(this)[0].select();
             $(this)[0].blur();
-            var imgSrc = document.selection.createRange().text;
+            let imgSrc = document.selection.createRange().text;
 
             if (imgTag.length > 0) {
                 imgTag[0].style.filter =

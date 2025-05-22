@@ -21,7 +21,7 @@
 					</div>						
 				</li>
 				<li>
-					<input type="submit" value="LogIn" class="bttn bttn_sbm2">
+					<input type="submit" value="로그인" class="bttn bttn_sbm2">
 				</li>
 			</ul>
 		</form>

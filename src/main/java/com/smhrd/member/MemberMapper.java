@@ -8,4 +8,6 @@ public interface MemberMapper {
 	public MemberVO login(MemberVO vo);
 
 	public void join(MemberVO vo);	
+	
+	public int IdCheck(String id);
 }

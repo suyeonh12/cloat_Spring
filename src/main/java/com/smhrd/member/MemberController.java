@@ -2,6 +2,8 @@ package com.smhrd.member;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -63,6 +66,25 @@ public class MemberController {
 	public String join() {
 		return "Join";
 	}
+	
+	@ResponseBody
+	@RequestMapping("/IdCheck")
+	public Map<String, Boolean> IdCheck(@RequestParam String id) {
+		System.out.println(id);
+		int cnt = mapper.IdCheck(id);
+		boolean available = false;
+		if(cnt == 0) {
+			// cnt == 0 : DB에 중복된 이메일이 없다.
+			// 	--> 사용 가능한 이메일이다.
+			available = true; // 사용 가능하다(true)
+		}
+		// Hash map(자료구조)
+		// Key, Value)한쌍으로 구성
+		// value는 중복 가능, key는 중복 불가(고유값)
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("available", available);
+		return response;
+	}	
 
 	@RequestMapping("/join_us")
 	   public String join_us(@RequestParam(value= "file", required = false)MultipartFile file, MemberVO vo, Model model) {
