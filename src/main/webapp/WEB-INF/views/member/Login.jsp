@@ -22,7 +22,7 @@
 						<input type="checkbox" name="id_save" id="id_save">
 						<label for="id_save" class="chk_btn"></label>
 						<label for="id_save" class="chk_txt">아이디 저장</label>
-						<a href="" class="ml-auto">아이디/비밀번호 찾기</a>
+						<a href="find" class="ml-auto">아이디/비밀번호 찾기</a>
 					</div>						
 				</li>
 				<li>

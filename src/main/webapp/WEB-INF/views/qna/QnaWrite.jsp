@@ -27,7 +27,7 @@
 					</li>					
 					<li>
 						<span>첨부파일</span>
-						<input type="file" name="file" class="ipt_tt">
+						<input type="file" name=file" class="ipt_tt">
 					</li>					
 				</ul>
 				<div class="bttn_wrap">

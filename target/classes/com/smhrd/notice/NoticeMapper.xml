@@ -59,7 +59,7 @@
 		insert into tb_notice(notice_title, notice_content, notice_file, created_at,
 		updated_at, notice_views, admin_id) values(
 		#{notice_title},
-		#{notice_content}, #{notice_file}, systimestamp, systimestamp,
+		#{notice_content}, #{notice_file, jdbcType=VARCHAR}, systimestamp, systimestamp,
 		#{notice_views}, #{admin_id}
 		)
 	</insert>

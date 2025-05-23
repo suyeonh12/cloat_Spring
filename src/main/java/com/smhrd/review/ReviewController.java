@@ -112,7 +112,7 @@ public class ReviewController {
 	public String ReviewUpload(ReviewVO vo, @RequestParam(value= "file", required = false)MultipartFile file) {
 		String loc = context.getRealPath("/resources/file/");
 		FileOutputStream fos;
-		String fileDemo = "null";
+		String fileDemo = null;
 		if (file != null && !file.isEmpty()) {
 			fileDemo = file.getOriginalFilename();
 			if(fileDemo.length() > 0) {

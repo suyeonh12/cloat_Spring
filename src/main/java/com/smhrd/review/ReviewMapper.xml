@@ -68,7 +68,7 @@
 		insert into tb_review(review_title, review_content, review_file, created_at,
 		updated_at, review_views, id) values(
 		#{review_title},
-		#{review_content}, #{review_file}, systimestamp, systimestamp,
+		#{review_content}, #{review_file, jdbcType=VARCHAR}, systimestamp, systimestamp,
 		#{review_views}, #{id}
 		)
 	</insert>

@@ -1,14 +1,6 @@
 <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>공지사항 상세보기</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
-</head>
-<body>
 
 <section class="content board view list">
     <div class="page_top">
@@ -37,7 +29,7 @@
                 <!-- 첨부파일이 있을 경우 표시 -->
                 <c:if test="${not empty notice.notice_file}">
                     <div class="view_file">
-                        <a href="${pageContext.request.contextPath}/upload/${notice.notice_file}" download>${notice.notice_file}</a>
+                        <a href="${pageContext.request.contextPath}/resources/file/${notice.notice_file}" download>${notice.notice_file}</a>
                     </div>
                 </c:if>
             </div>
