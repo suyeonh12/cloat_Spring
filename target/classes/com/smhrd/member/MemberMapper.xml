@@ -4,7 +4,7 @@
 
 	<select id="login" parameterType="com.smhrd.member.MemberVO" resultType = "com.smhrd.member.MemberVO">
 		select * from tb_user where id =#{id} and pw =#{pw}
-	</select>
+	</select>	
 	
 	<insert id="join" parameterType="com.smhrd.member.MemberVO">
       INSERT INTO tb_user (
@@ -17,5 +17,9 @@
    <select id="IdCheck" resultType="int">
  		select count(*) from tb_user where id =#{id} 
   	</select>
+  		
+ 	<update id="update" parameterType="com.smhrd.member.MemberVO">
+		update tb_user set pw=#{pw}, email=#{email}, phone=#{phone}, profile_img=#{profile_img} where id=#{id}
+	</update> 	
   	   
 </mapper>

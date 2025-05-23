@@ -8,11 +8,16 @@
 			<ul class="form_ul">
 				<li>
 					<span class="form_label">ID</span>
-					<input type="text" name="id" placeholder="ID를 입력해주세요" class="ipt_tt" required>
+					<input type="text" name="id" placeholder="ID를 입력해주세요" class="ipt_tt" maxlength="100" required>
 				</li>
 				<li>
 					<span class="form_label">PW</span>
-					<input type="password" name="pw" placeholder="PW를 입력해주세요" class="ipt_tt" required>
+					<div class="po_rel">
+						<input type="password" name="pw" placeholder="PW를 입력해주세요" class="ipt_tt" maxlength="200" required>
+						<div class="po_ab pwview" onClick="pkView(this)">
+							<img src="resources/images/visibility_off.svg" alt="">
+						</div>						
+					</div>
 					<div class="chkbox_div">
 						<input type="checkbox" name="id_save" id="id_save">
 						<label for="id_save" class="chk_btn"></label>

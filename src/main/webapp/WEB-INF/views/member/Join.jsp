@@ -1,6 +1,5 @@
 <%@include file="/WEB-INF/views/includes/header.jsp" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <section class="content join">
 	<div class="inner inner_500">
@@ -48,19 +47,29 @@
 					<input type="hidden" name="user_type" value="NORMAL" placeholder="">
 					<span class="form_label">아이디</span>
 					<div class="po_rel">
-						<input id="inputid" type="text" name="id" placeholder="ID를 입력하세요" class="ipt_tt" required>
+						<input id="inputid" type="text" name="id" placeholder="ID를 입력하세요" class="ipt_tt" maxlength="100" required>
 						<button type="button" class="bttn po_ab" id="idChkBtn">중복확인</button>					
 					</div>
 					<small id="idCheckMsg"></small>
 				</li>
 				<li>
 					<span class="form_label">비밀번호</span>
-					<input id="inputPw" type="password" name="pw" placeholder="영문/숫자/특수문자 조합 8자 이상" class="ipt_tt" required>
+					<div class="po_rel">
+						<input id="inputPw" type="password" name="pw" placeholder="영문/숫자/특수문자 조합 8자 이상" class="ipt_tt" maxlength="200" required>
+						<div class="po_ab pwview" onClick="pkView(this)">
+							<img src="resources/images/visibility_off.svg" alt="">
+						</div>
+					</div>
 					<small id="pwCheckMsg"></small>
 				</li>
 				<li>
 					<span class="form_label">비밀번호 확인</span>
-					<input id="inputPwChk" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요" class="ipt_tt">
+					<div class="po_rel">
+						<input id="inputPwChk" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요" class="ipt_tt" maxlength="200">
+						<div class="po_ab pwview" onClick="pkView(this)">
+							<img src="resources/images/visibility_off.svg" alt="">
+						</div>		
+					</div>			
 					<small id="pwMatchMsg"></small>
 				</li>				
 				<li>
@@ -69,11 +78,11 @@
 				</li>
 				<li>
 					<span class="form_label">이메일</span>
-					<input type="text" name="email" placeholder="이메일을 입력하세요" class="ipt_tt">
+					<input type="text" name="email" placeholder="이메일을 입력하세요" class="ipt_tt" required>
 				</li>
 				<li>
 					<span class="form_label">연락처</span>
-					<input type="text" name="phone" placeholder="전화번호를 입력하세요" class="ipt_tt">
+					<input type="text" name="phone" placeholder="전화번호를 입력하세요" class="ipt_tt" required>
 				</li>
 				<li class="profile">
 					<small class="s_info c_main">* 선택</small>
