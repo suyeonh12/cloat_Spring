@@ -117,9 +117,9 @@ public class UploadController {
         	System.out.println("에러");
         }
         
-        vo.setUpload_file("/resources/test_input/" + fileDemo);
+        vo.setUpload_file("/resources/input/" + fileDemo);
         
-        vo.setTransformed_file("/resources/test_output/" + outputFileDemo);
+        vo.setTransformed_file("/resources/output/" + outputFileDemo);
         
         System.out.println(vo);
         

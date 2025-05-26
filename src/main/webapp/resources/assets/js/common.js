@@ -27,3 +27,47 @@ function pkView(el) {
 		$img.attr('src', 'resources/images/visibility_off.svg');
 	}
 }
+
+// 접속 브라우저 체크
+var userAgentCheck = function(){    
+var ua = navigator.userAgent.toString().toLowerCase();
+var agent =  {
+		ie : (/msie/i).test(ua) || (/trident/i).test(ua),
+		firefox: (/firefox/i).test(ua),
+		webkit: (/applewebkit/i).test(ua),
+		chrome: (/chrome/i).test(ua),
+		opera: (/opera/i).test(ua),
+		ios: (/ip(ad|hone|od)/i).test(ua),
+		android: (/android/i).test(ua)
+	};
+
+	agent.safari = agent.webkit && !agent.chrome;
+	agent.mobile = document.ontouchstart !== undefined && ( agent.ios || agent.android );
+	agent.desktop = !(agent.ios || agent.android);
+
+	// ie 버전체크
+	if(agent.ie){
+		var _ieversion = ua.match(/(msie |trident.*rv[ :])([0-9]+)/)[2];
+		_ieversion = Math.floor(_ieversion);
+		agent.ie = "ie"+_ieversion;
+	}                
+
+	agent.os = (navigator.appVersion).match(/(mac|win|linux)/i);
+	agent.os =  agent.os ? agent.os[1].toLowerCase() : '';  
+
+	var _html = document.getElementsByTagName('html')[0];
+	var _class = '';
+	for (var value in agent) {
+		  if(agent[value]){                                
+				if(value == 'os'){
+					_class += agent.os;
+				}else if(value == 'ie'){
+					_class += agent[value]+' ';
+				}else{
+					_class += value+' ';
+				}
+		  }                      
+	}
+	_html.className += _class;
+   
+ }();
