@@ -12,16 +12,16 @@
 				<ul class="write_ul">
 					<li>
 						<span>ID</span>
-						<input type="text" name="id" value= ${mvo.id} class="ipt_tt" readonly> <!-- 로그인한 작성자 아이디 불러오기 -->
+						<input type="text" name="id" value=${mvo.id} class="ipt_tt" readonly> <!-- 로그인한 작성자 아이디 불러오기 -->
 					</li>
 					<li>
 						<span>제목</span>
-						<input type="text" name="review_title" class="ipt_tt" >
+						<input type="text" name="review_title" class="ipt_tt" required>
 					</li>
 					<li class="flex_dir_col">
 						<span>내용</span>
 						<div class="post-form">
-							<textarea name="review_content" id="summernote">
+							<textarea name="review_content" id="summernote" required>
 							</textarea>
 						</div>  						
 					</li>					
@@ -40,7 +40,7 @@
 			$('#summernote').summernote({
 
 				// 에디터 크기 설정
-				height: 800,
+				height: 260,
 				// 에디터 한글 설정
 				lang: 'ko-KR',
 				// 에디터에 커서 이동 (input창의 autofocus라고 생각하시면 됩니다.)

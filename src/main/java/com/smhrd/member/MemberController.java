@@ -125,25 +125,40 @@ public class MemberController {
         return "mypage/MyGallery"; // 마이페이지 뷰 이름
     }
     
+    //정보수정 전 본인확인 페이지(비밀번호 체크 한 번 더)
     @GetMapping("/MyLogin")
-    public String MyLogin() {
-        return "mypage/MyLogin";
+    public String MyLogin(HttpSession session, Model model) {
+        MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+        if (mvo == null) {
+            return "redirect:/login"; // 로그인 안 되어 있으면 로그인 페이지로 이동
+        }
+        model.addAttribute("member", mvo);
+        return "mypage/MyLogin";  	
     }    
     
 	@PostMapping("/login_to")
-	public String login_to(MemberVO vo) {
-		MemberVO mvo = mapper.login(vo);
-				
-		if (mvo != null) {
-			return "mypage/MyEdit"; // 내 정보수정 페이지로 이동
-		} else {
-			// 로그인 실패 - 로그인 페이지로 되돌아가기
-			return "mypage/MyLogin";
-		}
+	public String login_to(MemberVO vo, HttpSession session, Model model) {
+        MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+        if (mvo == null) {
+            return "redirect:/login"; // 로그인 안 되어 있으면 로그인 페이지로 이동
+        }else {
+    		MemberVO mvo2 = mapper.login(vo);		
+    		if (mvo2 != null) {
+    			return "mypage/MyEdit"; // 내 정보수정 페이지로 이동
+    		} else {
+    			// 로그인 실패 - 로그인 페이지로 되돌아가기
+    			return "mypage/MyLogin";
+    		}        	
+        } 
 	}    
     
     @GetMapping("/MyEdit")
-    public String MyEdit() {																																																																																		
+    public String MyEdit(MemberVO vo, HttpSession session, Model model) {	
+        MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+        if (mvo == null) {
+            return "redirect:/login"; // 로그인 안 되어 있으면 로그인 페이지로 이동
+        }
+        model.addAttribute("member", mvo);
         return "mypage/MyEdit";
     }
    
@@ -168,7 +183,7 @@ public class MemberController {
 				} catch (Exception e) {
 		            e.printStackTrace();
 		            redirectAttr.addFlashAttribute("msg", "파일 업로드 중 오류가 발생했습니다.");
-		            return "mypage/MyEdit";					
+		            return "redirect:/MyEdit";					
 				}
 			}
 		}
@@ -186,18 +201,33 @@ public class MemberController {
 	}
 	
     @GetMapping("/MyGallery")
-    public String MyGallery() {
+    public String MyGallery(MemberVO vo, HttpSession session, Model model) {
+        MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+        if (mvo == null) {
+            return "redirect:/login"; // 로그인 안 되어 있으면 로그인 페이지로 이동
+        }
+        model.addAttribute("member", mvo);
         return "mypage/MyGallery";
     }
     
-    @GetMapping("/MyQna")
-    public String MyQna() {
-        return "mypage/MyQna";
-    }
-    
-    @GetMapping("/MyReview")
-    public String MyReview() {
-        return "mypage/MyReview";
-    }    
+//    @GetMapping("/MyQna")
+//    public String MyQna(MemberVO vo, HttpSession session, Model model) {
+//        MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+//        if (mvo == null) {
+//            return "redirect:/login"; // 로그인 안 되어 있으면 로그인 페이지로 이동
+//        }
+//        model.addAttribute("member", mvo);
+//        return "mypage/MyQna";   	
+//    }
+//    
+//    @GetMapping("/MyReview")
+//    public String MyReview(MemberVO vo, HttpSession session, Model model) {
+//        MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+//        if (mvo == null) {
+//            return "redirect:/login"; // 로그인 안 되어 있으면 로그인 페이지로 이동
+//        }
+//        model.addAttribute("member", mvo);
+//        return "mypage/MyReview";
+//    }    
     
 }

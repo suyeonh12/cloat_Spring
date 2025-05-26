@@ -6,7 +6,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 				<div class="mp_cont">
-
 					<!-- 내 후기글 : tb_review 테이블에서 id가 로그인한 id와 같은 글 최신순으로 출력 // Qna.jsp 로직 참고하세요-->
 					<div class="mp_tit">내 후기글</div>
 
@@ -40,7 +39,9 @@
 								</tr>
 							</c:forEach>
 							<c:if test="${empty list}">
-								<p>게시물이 없습니다.</p>
+								<tr>
+									<td colspan="5">게시물이 없습니다.</td>
+								</tr>									
 							</c:if>
 						</table>
 						
@@ -68,9 +69,9 @@
 								</script>				
 							</div>
 						
-				
+						<c:if test="${totalPageCount > 0}">
 						<!-- 페이징 -->
-						<div class="pg_wrap">
+						<div class="pg_wrap" style="display: none;">
 							<nav>
 								<ul class="pagination">
 									<%-- 가장 첫 페이지가 아니면 '<' 버튼 활성화 --%>
@@ -99,21 +100,21 @@
 								</ul>
 							</nav>
 						</div>
+						</c:if>
 						
 				
-							<!-- 검색창 -->
-							<div class="search_form">
-								<form action="ReviewSearch">
-									<select class="sel" name="searchValue">
-										<!-- <option name="">내용+댓글</option> -->
-										<option value="review_content">내용</option>
-										<option value="review_title">제목</option>
-										<option value="id">작성자</option>
-									</select>
-									<input class="ipt_tt" type="text" name="searchContent" placeholder="검색어 입력">
-									<input class="ipt_sbm" type="submit" value="검색">
-								</form>
-							</div>
+						<!-- 검색창 -->
+						<div class="search_form">
+							<form action="ReviewSearch">
+								<select class="sel" name="searchValue">
+									<!-- <option name="">내용+댓글</option> -->
+									<option value="review_content">내용</option>
+									<option value="review_title">제목</option>
+								</select>
+								<input class="ipt_tt" type="text" name="searchContent" placeholder="검색어 입력">
+								<input class="ipt_sbm" type="submit" value="검색">
+							</form>
+						</div>
 				
 				</div>
 				

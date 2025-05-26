@@ -11,11 +11,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class QnaVO {
 
-	private int qna_idx;
-	private String qna_title;
-	private String qna_content;
-	private String qna_file;
-	private int qna_views;
-	private String id;
-	private Date created_at;
+   private int qna_idx;
+   private String qna_title;
+   private String qna_content;
+   private String qna_file;
+   private int qna_views;
+   private String id;
+   private Date created_at;
+   
+   
+    private int answer_idx;
+    private String answer_content;
+    private String answer_file;
+    private String admin_id;
+   
+
 }

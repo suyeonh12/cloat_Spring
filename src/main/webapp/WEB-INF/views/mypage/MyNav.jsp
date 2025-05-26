@@ -36,10 +36,10 @@
 							<a href="MyGallery" class="<%= "MyGallery.jsp".equals(currentView) ? "c_main" : "" %>">내 갤러리</a>
 						</li>					
 						<li>
-							<a href="MyReview" class="<%= "MyReview.jsp".equals(currentView) ? "c_main" : "" %>">내 후기글</a>					
+							<a href="MyReview?id=${mvo.id}" class="<%= "MyReview.jsp".equals(currentView) ? "c_main" : "" %>">내 후기글</a>					
 						</li>
 						<li>
-							<a href="MyQna" class="<%= "MyQna.jsp".equals(currentView) ? "c_main" : "" %>">내 문의글</a>					
+							<a href="MyQna?id=${mvo.id}" class="<%= "MyQna.jsp".equals(currentView) ? "c_main" : "" %>">내 문의글</a>					
 						</li>						
 						<li>
 							<a href="MyLogin" class="<%= "MyEdit.jsp".equals(currentView) ? "c_main" : "" %>">내 정보수정</a>

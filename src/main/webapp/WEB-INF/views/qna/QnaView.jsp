@@ -50,13 +50,15 @@
 							</div>
 							<div class="cmt_btm">
 								<div class="answerDiv">
-									<div style="white-space:pre;" class="answer_content">${answer.answer_content}</div>
-									<div class="cmt_time"><fmt:formatDate value="${answer.created_at}" pattern="yyyy.MM.dd HH:mm:ss" /></div>
+									<div class="content_wrap">
+										<div style="white-space:pre;" class="answer_content">${answer.answer_content}</div>
+										<div class="cmt_time"><fmt:formatDate value="${answer.created_at}" pattern="yyyy.MM.dd HH:mm:ss" /></div>									
+									</div>
 		                            <%-- 관리자만 보이는 수정/삭제 버튼 --%>
 		                            <c:if test="${sessionScope.mvo.user_type eq 'ADMIN'}">
 		                            <div class="cmt_bttn bttn_wrap">
 		                            	<button type="button" onClick="viewCmtEdit()" class="bttn bttn_sbm">수정</button>
-										<form action="${pageContext.request.contextPath}/deleteAnswer?id=${mvo.id}" method="post">
+										<form action="${pageContext.request.contextPath}/deleteQnaAnswer?id=${mvo.id}" method="post">
 										    <input type="hidden" name="answer_idx" value="${answer.answer_idx}" />
 										    <input type="hidden" name="qna_idx" value="${qna.qna_idx}" />
 										    <input class="bttn bttn_sbm" type="submit" value="삭제">		
@@ -71,7 +73,7 @@
 		                            </c:if>							
 								</div>
 								<div class="answerTextarea">
-			                        <form action="${pageContext.request.contextPath}/updateAnswer?id=${mvo.id}" method="post">
+			                        <form action="${pageContext.request.contextPath}/updateQnaAnswer?id=${mvo.id}" method="post">
 			                            <textarea name="answer_content" class="txtarea">${answer.answer_content}</textarea>
 			                            <div class="cmt_time"><fmt:formatDate value="${answer.created_at}" pattern="yyyy.MM.dd HH:mm:ss" /></div>			
 			                            <input type="hidden" name="answer_idx" value="${answer.answer_idx}" />
@@ -97,7 +99,7 @@
 									</div>	 
 								</div>                   
 								<div class="cmt_btm">
-			                        <form action="${pageContext.request.contextPath}/writeAnswer?id=${mvo.id}" method="post">
+			                        <form action="${pageContext.request.contextPath}/writeQnaAnswer?id=${mvo.id}" method="post">
 			                            <textarea name="answer_content" class="txtarea" placeholder="답변 내용을 작성하세요."></textarea>
 			                            <input type="hidden" name="qna_idx" value="${qna.qna_idx}" />
 			                            <div class="cmt_bttn bttn_wrap">
@@ -112,6 +114,23 @@
 				</c:choose>
 			</ul>
 		</div>
+		
+        <div class="bttn_wrap">
+        	<div>
+	        	<a href="ReviewWrite" class="bttn ipt_sbm">글쓰기</a>
+	            <!-- 해당 글 작성자 또는 관리자일 경우 버튼 표시 -->
+				<c:if test="${sessionScope.mvo.id eq qna.id or sessionScope.mvo.user_type eq 'ADMIN'}">
+	                <button onClick="location.href='QnaEdit.jsp?no=${qna.qna_idx}'" class="bttn">수정</button>
+	                <button onClick="location.href='QnaDelete.jsp?no=${qna.qna_idx}'" class="bttn">삭제</button>				
+	            </c:if>
+            </div>
+           	<div class="ml-auto">
+           		<a href="${pageContext.request.contextPath}/QnaList?pageNum=${pageNum}" class="bttn ipt_sbm">목록</a>
+				<button class="bttn" onClick="pageTop()">
+					<img src="resources/images/bk_arr_top.png" alt="">TOP
+				</button>           		
+           	</div>					
+        </div>		
         
     </div>
 </section>

@@ -522,7 +522,7 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 	display: flex;
 	align-items: center;
 	gap: 4px;
-	margin-bottom: 10px;
+	margin-bottom: 16px;
 } 
 .write_ul > li.flex_dir_col{
 	align-items: flex-start;
@@ -608,16 +608,14 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 	display: flex;
 	gap: 6px;
 }
-.cmt_wrap{
-    background: #efefef;
-    padding: 20px;
-    border-radius: 6px;
-    font-size: .9rem;
-}
 .cmt_box{
 	display: flex;
 	align-items: flex-start;
     gap: 12px;	
+    background: #efefef;
+    padding: 20px;
+    border-radius: 6px;
+    font-size: .9rem;    
 }
 .cmt_top{
 	display: flex;
@@ -646,10 +644,10 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 .cmt_btm{
 	flex: 1;
 }
-.answerDiv{
+.content_wrap{
 	background: #fff;
-    border-radius: 6px;
-    padding: 10px;	
+	border-radius: 6px;
+	padding: 10px;		
 }
 .cmt_BtnWrap{
 	position: relative;
@@ -687,6 +685,7 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 }
 .cmt_box .cmt_bttn{
 	justify-content: flex-end;
+	margin-top: 10px;
 }
 .cmt_box .cmt_bttn .bttn{
 	font-size: .8rem;
