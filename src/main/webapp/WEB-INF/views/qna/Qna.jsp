@@ -24,25 +24,27 @@
             <th>작성일</th>
             <th>조회수</th>
          </tr>
-         <!-- 게시판 테이블에 있는 내용 불러오기 / 한 목록에 10개씩, 최신순 -->
-         <c:forEach items="${list}" var="bvo">
-            <tr>
-               <td>${bvo.qna_idx}</td>
-               <td class="tb_title"><a href="${pageContext.request.contextPath}/qnaview?no=${bvo.qna_idx}&pageNum=${pageNum}">${bvo.qna_title}
-                  <c:if test="${bvo.answer_idx != 0}">
-                       (1)
-                  </c:if>   
-               </a></td>
-               <td>${bvo.id}</td>
-               <td><fmt:formatDate value="${bvo.created_at}"
-                     pattern="yyyy.MM.dd" /></td>
-               <td>${bvo.qna_views}</td>
-            </tr>
-         </c:forEach>
-         <c:if test="${empty list}">
-            <p>게시물이 없습니다.</p>
-         </c:if>
-      </table>
+		<!-- 게시판 테이블에 있는 내용 불러오기 / 한 목록에 10개씩, 최신순 -->
+		<c:forEach items="${list}" var="bvo">
+			<tr>
+				<td>${bvo.qna_idx}</td>
+				<td class="tb_title"><a href="${pageContext.request.contextPath}/qnaview?no=${bvo.qna_idx}&pageNum=${pageNum}">${bvo.qna_title}
+					<c:if test="${bvo.answer_idx != 0}">
+								(1)
+					</c:if>	
+				</a></td>
+				<td>${bvo.id}</td>
+				<td><fmt:formatDate value="${bvo.created_at}"
+						pattern="yyyy.MM.dd" /></td>
+				<td>${bvo.qna_views}</td>
+			</tr>
+		</c:forEach>
+		<c:if test="${empty list}">
+			<tr>
+				<td colspan="5">'${searchContent}' 에 관한 게시물이 없습니다.</td>
+			</tr>				
+		</c:if>
+	  </table>
 
       <!-- 글쓰기 -->
       <div class="bttn_wrap">
@@ -109,9 +111,9 @@
                <option value="qna_content">내용</option>
                <option value="qna_title">제목</option>
                <option value="id">작성자</option>
-            </select> <input class="ipt_tt" type="text" name="searchContent"
-               placeholder="검색어 입력"> <input class="ipt_sbm" type="submit"
-               value="검색">
+            </select> 
+            <input class="ipt_tt" type="text" name="searchContent" placeholder="검색어 입력" required>
+            <input class="ipt_sbm" type="submit" value="검색">
          </form>
       </div>
 

@@ -14,6 +14,23 @@
         SELECT COUNT(*) FROM tb_qna
     </select>
 
+	<select id="getTotalCountBySearch" resultType="int">
+		select count(*) from tb_news
+		<where>
+			<choose>
+				<when test="searchValue == 'news_title'">
+					news_title LIKE '%' || #{searchContent} || '%'
+				</when>
+				<when test="searchValue == 'news_content'">
+					news_content LIKE '%' || #{searchContent} || '%'
+				</when>
+				<otherwise>
+					admin_id is null
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+	
     <select id="getQnasByPage" resultType="com.smhrd.qna.QnaVO">
     <![CDATA[
         SELECT * FROM (
@@ -44,7 +61,7 @@
                qna_content LIKE '%' || #{param2} || '%'
             </when>
             <otherwise>
-               admin_id is null
+               id is null
             </otherwise>
          </choose>
       </where>

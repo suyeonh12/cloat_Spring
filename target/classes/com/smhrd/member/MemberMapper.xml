@@ -31,10 +31,14 @@
   	<select id="findId2" parameterType="com.smhrd.member.MemberVO"
   						resultType="String">
  		select id from tb_user where name = #{name} and email = #{email} 
-  	</select>  	
-  		
+  	</select>  	 
+	
  	<update id="update" parameterType="com.smhrd.member.MemberVO">
-		update tb_user set pw=#{pw}, email=#{email}, phone=#{phone}, profile_img=#{profile_img, jdbcType=VARCHAR}, pass_qa=#{pass_qa}, pass_answer=#{pass_answer}  where id=#{id}
-	</update> 	
+		update tb_user set pw=#{pw}, email=#{email}, phone=#{phone}, profile_img=#{profile_img, jdbcType=VARCHAR}, pass_qa=#{pass_qa}, pass_answer=#{pass_answer} where id=#{id}
+	</update>	
+	
+  	<select id="getTransformed_file" resultType="com.smhrd.upload.UploadVO">
+  		select * from tb_upload where id = #{id} order by created_at
+  	</select>  		
   	   
 </mapper>

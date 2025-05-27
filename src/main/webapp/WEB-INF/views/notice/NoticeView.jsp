@@ -6,8 +6,7 @@
 <section class="content board view list">
     <div class="page_top">
         <div class="inner">
-            <!-- 공지사항 제목을 상단에 출력 -->
-            <h2 id="pageName">공지사항</h2>
+            <h2 class="pageName">공지사항</h2>
         </div>
     </div>			
     <div class="inner">
@@ -30,28 +29,33 @@
                 <!-- 첨부파일이 있을 경우 표시 -->
                 <c:if test="${not empty notice.notice_file}">
                     <div class="view_file">
-                        <a href="${pageContext.request.contextPath}/resources/file/${notice.notice_file}" download>${notice.notice_file}</a>
+                        <a href="${pageContext.request.contextPath}/upload/${notice.notice_file}" download>${notice.notice_file}</a>
                     </div>
                 </c:if>
             </div>
-        </div>		   
-        
+        </div>		
+        		
         <div class="bttn_wrap">
-         	<!-- 해당 글 작성자 / admin 만 보임 -->
-			<c:if test="${sessionScope.mvo.id eq notice.admin_id or sessionScope.mvo.user_type eq 'ADMIN'}">        
 			<div>
-				<a href="NoticewWrite" class="bttn ipt_sbm">글쓰기</a>
+				<!-- admin 만 보임 --> 
+				<c:if test="${mvo.getUser_type() == 'ADMIN'}">
+				<button onClick="writeBtn()" class="bttn ipt_sbm">글쓰기</button>
                 <button onClick="location.href='NoticeEdit.jsp?no=${notice.notice_idx}'" class="bttn">수정</button>
                 <button onClick="location.href='NoticeDelete.jsp?no=${notice.notice_idx}'" class="bttn">삭제</button>
+				<script>
+						let writeBtn = () => {		
+							window.location.href = "NoticeWrite";		
+						}
+				</script>                
+                </c:if>
             </div>
-            </c:if>
             <div class="ml-auto">
             	<a href="${pageContext.request.contextPath}/NoticeList?pageNum=${pageNum}" class="bttn ipt_sbm">목록</a>
 				<button class="bttn" onClick="pageTop()">
 					<img src="resources/images/bk_arr_top.png" alt="">TOP
 				</button>            	
             </div>				
-        </div>	
+        </div> 	
         			
     </div>	
 </section>

@@ -13,6 +13,23 @@
     <select id="getTotalCount" resultType="int">
         SELECT COUNT(*) FROM tb_review
     </select>
+    
+	<select id="getTotalCountBySearch" resultType="int">
+		select count(*) from tb_news
+		<where>
+			<choose>
+				<when test="searchValue == 'news_title'">
+					news_title LIKE '%' || #{searchContent} || '%'
+				</when>
+				<when test="searchValue == 'news_content'">
+					news_content LIKE '%' || #{searchContent} || '%'
+				</when>
+				<otherwise>
+					admin_id is null
+				</otherwise>
+			</choose>
+		</where>
+	</select>    
 
     <select id="getReviewsByPage" resultType="com.smhrd.review.ReviewVO">
     <![CDATA[
@@ -54,6 +71,7 @@
          </choose>
       </where>
    </select>
+   
    <!-- 글쓰기 기능 -->
    <insert id="write" parameterType="com.smhrd.review.ReviewVO">
       insert into tb_review(review_title, review_content, review_file, created_at,

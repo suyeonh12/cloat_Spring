@@ -32,11 +32,13 @@
          </h1>
          <ul class="depth">
             <li>
-               <a href="">CLOAT</a>
-               <ul class="depth2">
-                  <li><a href="">개요</a></li>
-                  <li><a href="">팀 소개</a></li>
-                  <li><a href="">비전</a></li>
+               <a href="about">CLOAT</a>
+               <ul class="depth2 about-link">
+                  <li><a href="about?#why">WHY?</a></li>
+                  <li><a href="about?#what">WHAT IS?</a></li>
+                  <li><a href="about?#how">HOW?</a></li>
+                  <li><a href="about?#team">팀 소개</a></li>
+                  <li><a href="about?#vision">비전</a></li>
                </ul>
             </li>
             <li>
@@ -46,7 +48,7 @@
                <a href="ReviewList">고객후기</a>
             </li>
             <li>
-               <a href="">고객지원</a>
+               <a href="NoticeList">고객지원</a>
                <ul class="depth2">
                   <li><a href="NoticeList">공지사항</a></li>
                   <li><a href="NewsList">뉴스</a></li>

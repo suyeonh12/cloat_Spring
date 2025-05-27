@@ -127,7 +127,7 @@ public class UploadController {
         model.addAttribute("uvo", vo);
         
         
-		return vo.getTransformed_file();
+        return vo.getTransformed_file();
 	}
 	
 }

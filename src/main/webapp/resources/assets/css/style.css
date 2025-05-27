@@ -10,20 +10,20 @@
 *{
 	box-sizing: border-box;
 }
-html {overflow-y:scroll;font-size: 1rem;}
-body {margin:0;padding:0;font-size:1rem;font-family:'Paperlogy', sans-serif;background:#fff;color: #000;}
+html {overflow-y:scroll;font-size: 1rem;scroll-behavior: smooth;}
+body {margin:0;padding:0;font-size:1rem;font-family:'Paperlogy','Pretendard', sans-serif;background:#fff;color: #000;}
 html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
-h1, h2, h3, h4, h5, h6 {font-family:'Paperlogy', sans-serif;font-weight: 500;}
+h1, h2, h3, h4, h5, h6 {font-family:'Paperlogy','Pretendard', sans-serif;font-weight: 500;}
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
 
 ul,ol,dl,dt,dd,li {margin:0;padding:0;list-style:none;}
 legend {position:absolute;margin:0;padding:0;font-size:0;line-height:0;text-indent:-9999em;overflow:hidden}
-label, input, button, select, img {vertical-align:middle;font-family:'Paperlogy', sans-serif;font-size: 1rem;margin: 0;padding: 0;}
+label, input, button, select, img {vertical-align:middle;font-family:'Paperlogy','Pretendard', sans-serif;font-size: 1rem;margin: 0;padding: 0;}
 input, button {margin:0;padding:0;}
 input[type="submit"] {cursor:pointer}
 button {cursor:pointer}
 
-textarea, select {font-family:'Paperlogy', sans-serif;}
+textarea, select {font-family:'Paperlogy','Pretendard', sans-serif;}
 select {margin:0}
 p {margin:0;padding:0;word-break:break-all}
 pre {overflow-x:scroll;font-size:1.1em}
@@ -154,9 +154,6 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 }
 .join .bttn_sbm2{
 	margin-top: 20px;
-}
-.join .chkbox_div {
-    margin-top: 2px;
 }
 .txtarea{
     width: 100%;
@@ -555,10 +552,10 @@ text-align: center;
 	background: var(--bg);
 }
 .page_top h2{
-	font-size: 1.4rem;
+	font-size: 28px;
 }
 .page_name2{
-	font-size: 1.4rem;
+	font-size: 28px;
 	text-align: center;
 }
 .inner.pdx .page_name2{
@@ -939,7 +936,7 @@ text-align: center;
 .profile .filebox .upload-display img{
 	width: 100%;
 	height: 100%;
-	object-fit: contain;
+	object-fit: cover;
 }
 .join_success{
 	text-align: center;
@@ -1103,7 +1100,7 @@ text-align: center;
 }
 .mp_cont.edit .bttn_wrap{
 	gap: 8px;
-	margin: 16px 0 24px;	
+	margin: 24px 0;	
 }
 .mp_cont.edit .bttn_wrap .bttn{
 	padding: 8px 16px;
@@ -1116,6 +1113,9 @@ text-align: center;
 	text-decoration: underline;
 	font-size: 95%;
 	text-underline-offset: 2px;
+}
+.edit .profile .bttn{
+	width: fit-content;
 }
 /* 마이페이지 내 갤러리 */
 .mypage .my_gall{
@@ -1228,6 +1228,9 @@ text-align: center;
     font-size: 26px;
 }
 /*find - 아이디/비밀번호 찾기*/
+.find .chkbox_div {
+    margin-top: 2px;
+}
 .tabTit{
 	display: flex;
     margin-bottom: 20px;
@@ -1347,7 +1350,8 @@ text-align: center;
 	cursor: pointer;
 	transition: .2s;
 }
-.map_list .cont:hover{
+.map_list .cont:hover,
+.map_list .cont.on{
 	border-color: var(--main);
 	background: var(--bg);
 }
@@ -1426,9 +1430,191 @@ text-align: center;
     padding: 6px 10px;    
     transition: all .2s;
 }
-.map #map .info_window .info_btm > li:hover > a{
-	
-}
 .map #map .info_window .info_btm img{
 	width: 18px;
+}
+
+/* 여기부터 gpt */
+.main_good {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.main_good li {
+  background: #f5f5f5;
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+}
+.main_good .tit {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.main_good .cont {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+@media screen and (max-width: 768px) {
+  .main_banner h2 { font-size: 1.8rem; }
+  .main_good { grid-template-columns: 1fr; }
+  .main_board { flex-direction: column; }
+}
+
+
+/* CLOAT - about */
+.about{
+	text-align: center;
+}
+.about_head {
+  background: var(--bg);
+  padding: 40px 0;
+  text-align: center;
+}
+.about_head .tit1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
+  position: relative;
+}
+
+.about_head .tit1::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background-color: var(--main); /* 포인트 색상 */
+  border-radius: 4px;
+  margin: 10px auto;
+}
+
+.about_head .tit2 {
+  font-size: 17px;
+  color: #666;
+  letter-spacing: -0.2px;
+}
+.about_head + .inner{
+	padding: 100px 0;
+}
+
+/* Why CLOAT? */
+.ab_why{
+	text-align: center;
+}
+.news_ul{
+	margin: 0 auto;
+	width: 100%;
+	max-width: 600px;
+}
+.news_ul > li{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: #fff;
+	margin-bottom: 16px;
+	padding: 20px;
+	box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.news_ul .news_h{
+	font-weight: 600;
+}
+.news_ul .news_s{
+	color: #666;
+	font-size: 80%;
+}
+
+/* What is CLOAT? */
+.ab_what{
+
+}
+
+/* How CLOAT Works? */
+.ab_how{
+
+}
+.service_flow{
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	width: 1000px;
+	max-width: 100%;
+	margin: 0 auto;
+}
+.service_flow img{
+	display: block;
+	width: 33.33%;
+	max-width: 100%;
+}
+
+/* About the Team */
+.ab_team{
+	
+}
+.team_ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem;
+	margin-top: 1.5rem;
+}
+.team_ul li {
+	flex: 1 1 200px;
+	background: #e8f5e9;
+	padding: 1rem;
+	border-radius: 10px;
+	text-align: center;
+	box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+.team_ul .thumb{
+	width: 140px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	margin: 0 auto;
+	background: #fff;
+	overflow: hidden;
+	box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.team_ul .thumb img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.team_ul .name{
+	margin-top: 10px;
+	font-size: 1.1em;
+}
+.team_ul .position {
+	font-weight: bold;
+	color: #388e3c;
+	margin-top: 2px;
+}
+.team_ul .role {
+	font-size: 0.9em;
+	color: #555;
+}
+.team_ul .git {
+	display: inline-block;
+	font-size: 0.8em;
+	color: #888;
+	text-decoration: underline;
+	margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .team_ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  .service_flow {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
 }

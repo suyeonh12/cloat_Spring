@@ -14,6 +14,23 @@
         SELECT COUNT(*) FROM tb_news
     </select>
 
+	<select id="getTotalCountBySearch" resultType="int">
+		select count(*) from tb_news
+		<where>
+			<choose>
+				<when test="searchValue == 'news_title'">
+					news_title LIKE '%' || #{searchContent} || '%'
+				</when>
+				<when test="searchValue == 'news_content'">
+					news_content LIKE '%' || #{searchContent} || '%'
+				</when>
+				<otherwise>
+					admin_id is null
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+	
     <select id="getNewssByPage" resultType="com.smhrd.news.NewsVO">
     <![CDATA[
         SELECT * FROM (
@@ -38,20 +55,32 @@
     
     
 	<select id="NewsSearch" resultType="com.smhrd.news.NewsVO">
+		SELECT * FROM (
+		SELECT ROWNUM rn, a.*
+            FROM(
 		select * from tb_news
 		<where>
 			<choose>
-				<when test="param1 == 'news_title'">
-					news_title LIKE '%' || #{param2} || '%'
+				<when test="searchValue == 'news_title'">
+					news_title LIKE '%' || #{searchContent} || '%'
 				</when>
-				<when test="param1 == 'news_content'">
-					news_content LIKE '%' || #{param2} || '%'
+				<when test="searchValue == 'news_content'">
+					news_content LIKE '%' || #{searchContent} || '%'
 				</when>
 				<otherwise>
-					admin_id = null
+					admin_id is null
 				</otherwise>
 			</choose>
 		</where>
+		ORDER BY created_at DESC) a	      
+		<where> 
+			<![CDATA[
+        	ROWNUM <= #{endRow}
+    		]]>
+		</where> 
+		) <![CDATA[
+		WHERE rn >= #{startRow}
+		]]>
 	</select>
 
 	<insert id="write" parameterType="com.smhrd.news.NewsVO">

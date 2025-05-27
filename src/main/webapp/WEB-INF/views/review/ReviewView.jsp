@@ -6,8 +6,7 @@
 <section class="content board view list">
     <div class="page_top">
         <div class="inner">
-            <!-- 리뷰 제목을 상단에 출력 -->
-            <h2 id="pageName">리뷰</h2>
+            <h2 class="pageName">리뷰</h2>
         </div>
     </div>			
     <div class="inner">

@@ -15,6 +15,17 @@
             </div>
          </div>
    </footer>
+   
+   <!-- 
+   <aside class="floating">
+   	<div>24시간<br> 고객센터</div>
+   	<ul>
+   		<li>
+   			<a></a>
+   		</li>
+   	</ul>
+   </aside>
+   -->
 
 	<div class="popWrap popWrap_footer">
 		<div class="popBg" onClick="popClose()"></div>

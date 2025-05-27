@@ -5,7 +5,7 @@
     <select id="NoticeList" resultType="com.smhrd.notice.NoticeVO">
         SELECT * FROM tb_notice
     </select>
-
+    
     <select id="getNotice" parameterType="int" resultType="com.smhrd.notice.NoticeVO">
         SELECT * FROM tb_notice WHERE notice_idx = #{notice_idx}
     </select>
@@ -14,6 +14,23 @@
         SELECT COUNT(*) FROM tb_notice
     </select>
 
+	<select id="getTotalCountBySearch" resultType="int">
+		select count(*) from tb_notice
+		<where>
+			<choose>
+				<when test="searchValue == 'notice_title'">
+					notice_title LIKE '%' || #{searchContent} || '%'
+				</when>
+				<when test="searchValue == 'notice_content'">
+					notice_content LIKE '%' || #{searchContent} || '%'
+				</when>
+				<otherwise>
+					admin_id is null
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+	
     <select id="getNoticesByPage" resultType="com.smhrd.notice.NoticeVO">
     <![CDATA[
         SELECT * FROM (

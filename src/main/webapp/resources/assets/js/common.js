@@ -28,6 +28,25 @@ function pkView(el) {
 	}
 }
 
+
+// header에서 cloat 메뉴의 링크 클릭시 이동
+$(document).on('click', '.about-link > li > a', function(e) {
+    let targetHash = this.hash;
+    let aboutPage = 'about.html';
+
+    if (location.pathname.endsWith(aboutPage)) {
+        e.preventDefault();
+        let h_height = $('.header').outerHeight();
+        let target = $(targetHash);
+        if (target.length) {
+            $('html, body').scrollTop(target.offset().top - h_height);
+        }
+    } else {
+        e.preventDefault();
+        window.location.href = aboutPage + targetHash;
+    }
+});
+
 // 접속 브라우저 체크
 var userAgentCheck = function(){    
 var ua = navigator.userAgent.toString().toLowerCase();

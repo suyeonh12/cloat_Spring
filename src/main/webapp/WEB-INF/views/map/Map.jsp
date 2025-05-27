@@ -49,7 +49,7 @@
 			<div class="map_container">
 				<div class="map_list">
 					<c:forEach var="center" items="${mapvo}" varStatus="status">
-						<div class="cont">
+						<div class="cont <c:if test='${status.first}'>on</c:if>">
 							<div class="info_cont">
 								<div class="title_area">
 									<span class="sub_tit">${center.sido}</span>
@@ -92,7 +92,8 @@
 			var imageSize = new kakao.maps.Size(24, 35); // 마커 이미지의 이미지 크기 입니다
 			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); // 마커 이미지를 생성합니다  
 			
-			<c:forEach var="center" items="${mapvo}" varStatus="status"> (function() { 
+			<c:forEach var="center" items="${mapvo}" varStatus="status"> (
+			function() { 
 				var position = new kakao.maps.LatLng(${center.lat}, ${center.lon}); 
 				var title = '${center.org_name}'; 
 				// 마커 생성
@@ -147,17 +148,38 @@
 				kakao.maps.event.addListener(marker, 'click', function() { 
 					closeOverlays(); 
 					overlay.setMap(map); 
-					map.panTo(position); 
+					map.panTo(position);
+					
+				    // [1] 오버레이 관련 제목 가져오기
+				    const orgName = marker.getTitle(); // 또는 content 안에서 title 따로 꺼내는 방법도 가능
+
+				    // [2] 관련 .cont 요소에 on 추가 + 형제들에서 제거
+				    $('.map_list .cont').each(function () {
+				        const title = $(this).find('.tit').text().trim();
+				        if (title === orgName.trim()) {
+				            $(this).addClass('on').siblings('.cont').removeClass('on');
+
+				            // [3] 해당 cont를 중심으로 스크롤 이동
+				            const container = $('.map_list');
+				            const scrollTo = $(this);
+				            const scrollTop = scrollTo.offset().top - container.offset().top + container.scrollTop() - container.height() / 2 + scrollTo.outerHeight() / 2;
+
+				            container.animate({ scrollTop: scrollTop }, 400);
+				        }
+				    });				
 				}); 
 			})(); 
+			</c:forEach>
 			
-			</c:forEach> function closeOverlays() { 
+			function closeOverlays() { 
 				for (var i = 0; i < overlays.length; i++) { 
 					overlays[i].setMap(null); 
 				} 
 			} // div.cont 클릭 시 마커와 오버레이 연동 
 			
 			$('.map_list .cont').click(function() { 
+				$(this).addClass('on').siblings('.cont').removeClass('on');
+				
 				var orgName = $(this).find('.tit').text(); 
 				
 				// markers 배열에서 title이 일치하는 마커 찾기

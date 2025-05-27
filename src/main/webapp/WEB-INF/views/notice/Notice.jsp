@@ -39,8 +39,8 @@
 			</c:forEach>
 			<c:if test="${empty list}">
 				<tr>
-					<td colspan="5">게시물이 없습니다</td>
-				</tr>
+					<td colspan="5">'${searchContent}' 에 관한 게시물이 없습니다.</td>
+				</tr>				
 			</c:if>
 		</table>
 
@@ -63,9 +63,7 @@
 				}
 			</script>
 		</div>
-		
-		<!-- 넘길 목록 있을때만 페이징 보이게 -->
-		<c:if test="${totalPageCount > 0}">
+
 		<!-- 페이징 -->
 		<div class="pg_wrap">
 			<nav>
@@ -96,8 +94,6 @@
 				</ul>
 			</nav>
 		</div>
-		</c:if>
-
 
 		<!-- 검색창 -->
 		<div class="search_form">
@@ -106,9 +102,9 @@
 					<!-- <option name="">내용+댓글</option> -->
 					<option value="notice_content">내용</option>
 					<option value="notice_title">제목</option>
-				</select> <input class="ipt_tt" type="text" name="searchContent"
-					placeholder="검색어 입력"> <input class="ipt_sbm" type="submit"
-					value="검색">
+				</select>
+				<input class="ipt_tt" type="text" name="searchContent" placeholder="검색어 입력" required> 
+				<input class="ipt_sbm" type="submit" value="검색">
 			</form>
 		</div>
 

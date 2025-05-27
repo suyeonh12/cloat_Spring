@@ -6,8 +6,7 @@
 <section class="content board view list">
     <div class="page_top">
         <div class="inner">
-            <!-- 뉴스 제목을 상단에 출력 -->
-            <h2 id="pageName">뉴스</h2>
+            <h2 class="pageName">뉴스</h2>
         </div>
     </div>			
     <div class="inner">
@@ -37,14 +36,19 @@
         </div>	
         
         <div class="bttn_wrap">
-         	<!-- 해당 글 작성자 / admin 만 보임 -->
-			<c:if test="${sessionScope.mvo.id eq news.admin_id or sessionScope.mvo.user_type eq 'ADMIN'}">        
 			<div>
-				<a href="NewswWrite" class="bttn ipt_sbm">글쓰기</a>
+				<!-- admin 만 보임 --> 
+				<c:if test="${mvo.getUser_type() == 'ADMIN'}">
+				<button onClick="writeBtn()" class="bttn ipt_sbm">글쓰기</button>
                 <button onClick="location.href='NewsEdit.jsp?no=${news.news_idx}'" class="bttn">수정</button>
                 <button onClick="location.href='NewsDelete.jsp?no=${news.news_idx}'" class="bttn">삭제</button>
+				<script>
+						let writeBtn = () => {		
+							window.location.href = "NewsWrite";		
+						}
+				</script>                
+                </c:if>
             </div>
-            </c:if>
             <div class="ml-auto">
             	<a href="${pageContext.request.contextPath}/NewsList?pageNum=${pageNum}" class="bttn ipt_sbm">목록</a>
 				<button class="bttn" onClick="pageTop()">

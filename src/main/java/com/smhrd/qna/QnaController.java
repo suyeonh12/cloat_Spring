@@ -34,7 +34,8 @@ public class QnaController {
    // 공지사항 상세보기 + 조회수 증가
    @RequestMapping("/qnaview")
    public String qnaView(@RequestParam("no") int qnaIdx,
-         @RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model) {
+		   					@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, 
+		   					Model model) {
       qnaService.increaseViews(qnaIdx);
       QnaVO qna = mapper.getQna(qnaIdx);
       QnaVO answer = qnaService.getAnswer(qnaIdx);
@@ -146,14 +147,35 @@ public class QnaController {
    }
 
    // 검색기능
-   @RequestMapping("/QnaSearch")
-   public String QnaSearch(@RequestParam String searchValue, @RequestParam String searchContent, Model model) {
-
-      List<QnaVO> list = mapper.QnaSearch(searchValue, searchContent);
-      System.out.println(searchValue + " " + searchContent);
-      model.addAttribute("list", list);
-      return "qna/Qna";
-   }
+	@RequestMapping("/QnaSearch")
+	public String NewsSearch(@RequestParam String searchValue, @RequestParam String searchContent ,
+							  @RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model) {
+		
+		int pageSize = 10;
+       int startRow = (pageNum - 1) * pageSize + 1;
+       int endRow = pageNum * pageSize;
+		
+       int totalCount = mapper.getTotalCountBySearch(searchValue, searchContent);
+       int totalPageCount = (totalCount + pageSize - 1) / pageSize;
+       
+		List<QnaVO> list = mapper.QnaSearch(searchValue, searchContent, startRow, endRow);
+		if (list == null) list = new ArrayList<>();
+		
+		int pageBlock = 10;
+       int startPageNum = ((pageNum - 1) / pageBlock) * pageBlock + 1;
+       int endPageNum = Math.min(startPageNum + pageBlock - 1, totalPageCount);
+		
+		System.out.println(searchValue + " " + searchContent);
+		
+		model.addAttribute("list", list);
+       model.addAttribute("pageNum", pageNum);
+       model.addAttribute("totalPageCount", totalPageCount);
+       model.addAttribute("startPageNum", startPageNum);
+       model.addAttribute("endPageNum", endPageNum);
+       model.addAttribute("searchValue", searchValue);
+       model.addAttribute("searchContent", searchContent);
+		return "qna/Qna";
+	}
 
    @RequestMapping("/QnaWrite")
    public String QnaWrite() {
@@ -165,7 +187,7 @@ public class QnaController {
    public String QnaUpload(QnaVO vo, @RequestParam(value = "file", required = false) MultipartFile file) {
       String loc = context.getRealPath("/resources/file/");
       FileOutputStream fos;
-      String fileDemo = "null";
+      String fileDemo = null;
       if (file != null && !file.isEmpty()) {
          fileDemo = file.getOriginalFilename();
          if (fileDemo.length() > 0) {

@@ -144,6 +144,11 @@ imgTarget.on('change', function() {
 </script>
 
 <script>
+
+	<c:if test="${!empty mvo}">
+		let userId = "${mvo.id}";
+	</c:if>
+
 	$('#change').on("click",function(){
 		
 		//$('.zzz h1').text('변환 중');
@@ -161,6 +166,10 @@ imgTarget.on('change', function() {
 	    
 	    let formData = new FormData();
 	    formData.append('file', file);
+	    
+	    if (typeof userId !== 'undefined') {
+	        formData.append('id', userId);
+	    }
 		
 		$.ajax({                                                              
 			data : formData,

@@ -25,25 +25,24 @@
             <th>조회수</th>
          </tr>
          <!-- 게시판 테이블에 있는 내용 불러오기 / 한 목록에 10개씩, 최신순 -->
-         <c:forEach items="${list}" var="bvo">
-            <tr>
-               <td>${bvo.review_idx}</td>
-               <td class="tb_title"><a href="${pageContext.request.contextPath}/reviewview?no=${bvo.review_idx}&pageNum=${pageNum}">${bvo.review_title}
-                  <c:if test="${bvo.cmt_idx != 0}">
-                       (1)
-                  </c:if>   
-               </a></td>
-               <td>${bvo.id}</td>
-               <td><fmt:formatDate value="${bvo.created_at}"
-                     pattern="yyyy.MM.dd" /></td>
-               <td>${bvo.review_views}</td>
-            </tr>
-         </c:forEach>
-         <c:if test="${empty list}">
-         	<tr>
-         		<td colspan="5">게시물이 없습니다.</td>
-         	</tr>
-         </c:if>
+		<c:forEach items="${list}" var="bvo">
+			<tr>
+				<td>${bvo.review_idx}</td>
+				<td class="tb_title"><a href="${pageContext.request.contextPath}/reviewview?no=${bvo.review_idx}&pageNum=${pageNum}">${bvo.review_title}
+					<c:if test="${bvo.cmt_idx != 0}">
+ 							(1)
+					</c:if>	
+				</a></td>
+				<td>${bvo.id}</td>
+				<td><fmt:formatDate value="${bvo.created_at}" pattern="yyyy.MM.dd" /></td>
+				<td>${bvo.review_views}</td>
+			</tr>
+		</c:forEach>
+        <c:if test="${empty list}">
+        	<tr>
+         		<td colspan="5">'${searchContent}' 에 관한 게시물이 없습니다.</td>
+        	</tr>
+        </c:if>
       </table>
       
       
@@ -114,7 +113,7 @@
                   <option value="review_title">제목</option>
                   <option value="id">작성자</option>
                </select>
-               <input class="ipt_tt" type="text" name="searchContent" placeholder="검색어 입력">
+               <input class="ipt_tt" type="text" name="searchContent" placeholder="검색어 입력" required>
                <input class="ipt_sbm" type="submit" value="검색">
             </form>
          </div>

@@ -8,12 +8,28 @@ import org.apache.ibatis.annotations.Param;
 public interface ReviewMapper {
 
    public List<ReviewVO> ReviewList();
+   
     ReviewVO getReview(int review_idx);
+    
     int getTotalCount();
+    
+    int getTotalCountBySearch(@Param("searchValue") String searchValue,
+            @Param("searchContent") String searchContent);
+    
     List<ReviewVO> getReviewsByPage(@Param("startRow") int startRow, @Param("endRow") int endRow);
+    
     void updateReviewViews(@Param("reviewIdx") int reviewIdx);
+    
+    
+    
+    
+
+    
+    
    public int write(ReviewVO vo); // 글쓰기기능
-   public List<ReviewVO> ReviewSearch(String searchValue, String searchContent); // 검색 기능
+   
+   public List<ReviewVO> ReviewSearch(@Param("searchValue") String searchValue, @Param("searchContent") String searchContent,
+			@Param("startRow") int startRow, @Param("endRow") int endRow); // 검색 기능
    
    public ReviewVO getAnswerByReviewIdx(int review_idx); // 답변 조회 (1개만)
    public int insertReviewAnswer(ReviewVO vo); // 답변 작성

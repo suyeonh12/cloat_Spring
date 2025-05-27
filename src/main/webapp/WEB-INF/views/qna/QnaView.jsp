@@ -6,9 +6,9 @@
 <section class="content board view list">
     <div class="page_top">
         <div class="inner">
-            <h2 id="pageName">고객문의</h2>
+            <h2 class="pageName">고객문의</h2>
         </div>
-    </div>
+    </div>			
     <div class="inner">
         <div class="view_wrap">
             <div class="view_top">

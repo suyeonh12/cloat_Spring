@@ -13,6 +13,10 @@ public interface NewsMapper {
     NewsVO getNews(int news_idx);
 
     int getTotalCount();
+    
+    int getTotalCountBySearch(@Param("searchValue") String searchValue,
+            @Param("searchContent") String searchContent);
+    
 
     List<NewsVO> getNewssByPage(@Param("startRow") int startRow, @Param("endRow") int endRow);
 
@@ -26,5 +30,6 @@ public interface NewsMapper {
 
 	public int write(NewsVO vo);
 
-	public List<NewsVO> NewsSearch(String searchValue, String searchContent);
+	public List<NewsVO> NewsSearch(@Param("searchValue") String searchValue, @Param("searchContent") String searchContent,
+									@Param("startRow") int startRow, @Param("endRow") int endRow);
 }

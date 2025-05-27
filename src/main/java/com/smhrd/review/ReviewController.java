@@ -153,15 +153,37 @@ public class ReviewController {
     public ModelAndView detail(@RequestParam("reNum") String reNum) throws Exception {
         return new ModelAndView("detail", "detail1", reviewService.getReviewDetail(reNum));
     }
+    
     // 검색기능
-   @RequestMapping("/ReviewSearch")
-   public String ReviewSearch(@RequestParam String searchValue, @RequestParam String searchContent ,Model model) {
-      
-      List<ReviewVO> list = mapper.ReviewSearch(searchValue, searchContent);
-      System.out.println(searchValue + " " + searchContent);
-      model.addAttribute("list", list);
-      return "review/Review";
-   }
+ 	@RequestMapping("/ReviewSearch")
+ 	public String NewsSearch(@RequestParam String searchValue, @RequestParam String searchContent ,
+ 							  @RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model) {
+ 		
+ 		int pageSize = 10;
+        int startRow = (pageNum - 1) * pageSize + 1;
+        int endRow = pageNum * pageSize;
+ 		
+        int totalCount = mapper.getTotalCountBySearch(searchValue, searchContent);
+        int totalPageCount = (totalCount + pageSize - 1) / pageSize;
+        
+ 		List<ReviewVO> list = mapper.ReviewSearch(searchValue, searchContent, startRow, endRow);
+ 		if (list == null) list = new ArrayList<>();
+ 		
+ 		int pageBlock = 10;
+        int startPageNum = ((pageNum - 1) / pageBlock) * pageBlock + 1;
+        int endPageNum = Math.min(startPageNum + pageBlock - 1, totalPageCount);
+ 		
+ 		System.out.println(searchValue + " " + searchContent);
+ 		
+ 		model.addAttribute("list", list);
+        model.addAttribute("pageNum", pageNum);
+        model.addAttribute("totalPageCount", totalPageCount);
+        model.addAttribute("startPageNum", startPageNum);
+        model.addAttribute("endPageNum", endPageNum);
+        model.addAttribute("searchValue", searchValue);
+        model.addAttribute("searchContent", searchContent);
+ 		return "review/Review";
+ 	}
 
    @RequestMapping("/ReviewWrite")
    public String ReviewWrite(Model model) {

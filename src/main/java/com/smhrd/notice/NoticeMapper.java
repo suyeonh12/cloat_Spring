@@ -12,6 +12,9 @@ public interface NoticeMapper {
     NoticeVO getNotice(int notice_idx);
 
     int getTotalCount();
+    
+    int getTotalCountBySearch(@Param("searchValue") String searchValue,
+            @Param("searchContent") String searchContent);
 
     List<NoticeVO> getNoticesByPage(@Param("startRow") int startRow, @Param("endRow") int endRow);
 
@@ -23,5 +26,6 @@ public interface NoticeMapper {
 
 	public int write(NoticeVO vo);
 
-	public List<NoticeVO> NoticeSearch(String searchValue, String searchContent);
+	public List<NoticeVO> NoticeSearch(@Param("searchValue") String searchValue, @Param("searchContent") String searchContent,
+			@Param("startRow") int startRow, @Param("endRow") int endRow);
 }

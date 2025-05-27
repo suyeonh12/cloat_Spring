@@ -2,11 +2,15 @@ package com.smhrd.member;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.smhrd.upload.UploadVO;
 
 @Controller
 public class MemberController {
@@ -33,6 +39,11 @@ public class MemberController {
     public String main() {
         return "Main"; // 메인 페이지 뷰 이름
     }
+    
+    @RequestMapping("/about")
+    public String about() {
+        return "About"; // 소개 페이지 이동
+    }    
 
     @RequestMapping("/login")
     public String login() {
@@ -40,15 +51,20 @@ public class MemberController {
     }
 
     @PostMapping("/login_do")
-    public String login(MemberVO vo, HttpSession session) {
+    public String login(MemberVO vo, HttpSession session, HttpServletResponse response, @RequestParam(value= "id_save", required = false) String id_save) {
         MemberVO mvo = mapper.login(vo);
-
         if (mvo != null) {
             // 로그인 성공 - 세션에 사용자 정보 저장
             session.setAttribute("mvo", mvo);
+            
+            if("id_save".equals(id_save)) {
+            	Cookie ck = new Cookie("id", vo.getId());
+            	response.addCookie(ck);
+            }
             return "redirect:/"; // 마이페이지로 이동
         } else {
             // 로그인 실패 - 로그인 페이지로 되돌아가기
+        	System.out.println("dsfrjtdsfhfsh");
             return "redirect:/login";
         }
     }
@@ -140,8 +156,7 @@ public class MemberController {
         if (mvo == null) {
             return "redirect:/login"; // 로그인 안 되어 있으면 로그인 페이지로 이동
         }
-        model.addAttribute("member", mvo);
-        return "mypage/MyGallery"; // 마이페이지 뷰 이름
+        return "redirect:/MyGallery"; // 마이페이지 뷰 이름
     }
     
     //정보수정 전 본인확인 페이지(비밀번호 체크 한 번 더)
@@ -184,9 +199,12 @@ public class MemberController {
 	@PostMapping("/Update")
 	public String update(@RequestParam(value= "file", required = false)MultipartFile file, MemberVO vo, Model model, 
 			RedirectAttributes redirectAttr, HttpSession session) {
+		
 		System.out.println(vo);
 		String loc = context.getRealPath("/resources/file/");
 		FileOutputStream fos;
+		
+		
 		String fileDemo = null;
 		if (file != null && !file.isEmpty()) {
 			fileDemo = file.getOriginalFilename();
@@ -199,6 +217,7 @@ public class MemberController {
 					fos = new FileOutputStream(targetFile); // 파일저장경로 + 파일저장명
 					fos.write(file.getBytes());  // 우리가 진짜 가져온 파일로 쓰기
 					fos.close();  // 이건 안써줘도 되는 코드지만 용량 절약을 습관화
+					vo.setProfile_img(fileDemo);
 				} catch (Exception e) {
 		            e.printStackTrace();
 		            redirectAttr.addFlashAttribute("msg", "파일 업로드 중 오류가 발생했습니다.");
@@ -206,8 +225,7 @@ public class MemberController {
 				}
 			}
 		}
-		vo.setProfile_img(fileDemo);
-
+	
 		int result = mapper.update(vo);
 		session.setAttribute("mvo", vo);	
 	    if (result > 0) {
@@ -226,6 +244,12 @@ public class MemberController {
             return "redirect:/login"; // 로그인 안 되어 있으면 로그인 페이지로 이동
         }
         model.addAttribute("member", mvo);
+        List<UploadVO> list = mapper.getTransformed_file(mvo.getId());
+        
+        if (list == null) { list = new ArrayList<>(); }
+		
+        model.addAttribute("imglist", list);
+        
         return "mypage/MyGallery";
     }
     
