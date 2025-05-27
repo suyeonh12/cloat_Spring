@@ -16,5 +16,7 @@ public class MemberVO {
 	private String phone;
 	private String profile_img;
 	private String user_type;
+	private String pass_qa;
+	private String pass_answer;
 	
 }

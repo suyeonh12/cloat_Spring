@@ -16,7 +16,7 @@
          </div>
    </footer>
 
-	<div class="popWrap">
+	<div class="popWrap popWrap_footer">
 		<div class="popBg" onClick="popClose()"></div>
 		<div class="popBox">
 			<div class="popClose" onClick="popClose()">
@@ -29,7 +29,7 @@
 	
 	<script>
 		function popUp(txt) {
-			$(".popWrap").show();
+			$(".popWrap_footer").show();
 			$("html, body").css('overflow','hidden');
 	
 			let title = "";
@@ -50,8 +50,8 @@
 					break;
 			}
 	
-			$(".popWrap .pop_tit").text(title);
-			$(".popWrap .pop_cont").load(url);
+			$(".popWrap_footer .pop_tit").text(title);
+			$(".popWrap_footer .pop_cont").load(url);
 		}
 	
 		function popClose(){

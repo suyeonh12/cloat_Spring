@@ -71,7 +71,23 @@
 						</div>		
 					</div>			
 					<small id="pwMatchMsg"></small>
-				</li>				
+				</li>
+				<li>
+					<span class="form_label">비밀번호 찾기 질문</span>
+					<select name="pass_qa" class="sel">
+            				<option value="0" seleceted>어머니의 성함은 무엇인가요?</option>
+            				<option value="1">아버지의 성함은 무엇인가요?</option>
+            				<option value="2">초등학교 이름은 무엇인가요?</option>
+            				<option value="3">첫 애완동물의 이름은 무엇인가요?</option>
+            				<option value="4">당신이 좋아하는 색깔은 무엇인가요?</option>
+            				<option value="5">어릴 적 별명은 무엇인가요?</option>
+            				<option value="6">태어난 도시는 어디인가요?</option>
+            				<option value="7">가장 좋아하는 음식은 무엇인가요?</option>
+            				<option value="8">가장 친한 친구의 이름은 무엇인가요?</option>
+            				<option value="9">첫 해외여행을 간 나라는 어디인가요?</option>
+        			</select>
+        			<input type="text" name="pass_answer" placeholder="질문의 답을 입력하세요." class="ipt_tt" required>
+				</li>											
 				<li>
 					<span class="form_label">이름</span>
 					<input type="text" name="name" placeholder="이름을 입력하세요" class="ipt_tt" required>

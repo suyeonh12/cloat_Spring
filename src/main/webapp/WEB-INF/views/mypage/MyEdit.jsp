@@ -42,6 +42,29 @@
 										<small id="pwMatchMsg"></small>
 									</li>									
 								</ul>
+							</li>
+							<li>
+								<ul class="d_flex">
+									<li>
+										<span class="form_label">비밀번호 찾기 질문</span>
+										<select name="pass_qa" class="sel">
+					            				<option value="0" <c:if test="${mvo.pass_qa == 0 or mvo.pass_qa == null}">selected</c:if>>어머니의 성함은 무엇인가요?</option>
+					            				<option value="1" <c:if test="${mvo.pass_qa == 1}">selected</c:if>>아버지의 성함은 무엇인가요?</option>
+					            				<option value="2" <c:if test="${mvo.pass_qa == 2}">selected</c:if>>초등학교 이름은 무엇인가요?</option>
+					            				<option value="3" <c:if test="${mvo.pass_qa == 3}">selected</c:if>>첫 애완동물의 이름은 무엇인가요?</option>
+					            				<option value="4" <c:if test="${mvo.pass_qa == 4}">selected</c:if>>당신이 좋아하는 색깔은 무엇인가요?</option>
+					            				<option value="5" <c:if test="${mvo.pass_qa == 5}">selected</c:if>>어릴 적 별명은 무엇인가요?</option>
+					            				<option value="6" <c:if test="${mvo.pass_qa == 6}">selected</c:if>>태어난 도시는 어디인가요?</option>
+					            				<option value="7" <c:if test="${mvo.pass_qa == 7}">selected</c:if>>가장 좋아하는 음식은 무엇인가요?</option>
+					            				<option value="8" <c:if test="${mvo.pass_qa == 8}">selected</c:if>>가장 친한 친구의 이름은 무엇인가요?</option>
+					            				<option value="9" <c:if test="${mvo.pass_qa == 9}">selected</c:if>>첫 해외여행을 간 나라는 어디인가요?</option>
+					        			</select>
+									</li>			
+									<li>
+										<span class="form_label">비밀번호 찾기 답변</span>
+										<input type="text" name="pass_answer" placeholder="질문의 답을 입력하세요." value="${mvo.pass_answer}" class="ipt_tt" required>
+									</li>								
+								</ul>
 							</li>				
 							<li>
 								<span class="form_label">이름</span>
@@ -89,8 +112,9 @@
 		let mbOutConfrm  = confirm("정말 탈퇴하시겠습니까?");
 		if(mbOutConfrm == true){
 			// 회원탈퇴로직 진행
-			alert("회원탈퇴완료");
 			
+			window.location.href = "delete?id=" + "${mvo.id}";
+			alert("회원탈퇴완료");
 		}
 	}
 
@@ -162,7 +186,7 @@
 
 			// 이미지 MIME 타입 허용 리스트
 			var validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/bmp'];
-			var maxSize = 5 * 1024 * 1024; // 5MB
+			var maxSize = 10 * 1024 * 1024; // 10MB
 
 			// MIME 타입 검사
 			if (!validTypes.includes(file.type)) {
@@ -174,7 +198,7 @@
 
 			// 파일 용량 검사
 			if (file.size > maxSize) {
-				alert('5MB 이하의 이미지만 업로드할 수 있습니다.');
+				alert('10MB 이하의 이미지만 업로드할 수 있습니다.');
 				$(this).val('');
 				$(this).siblings('.upload-name').val('');
 				return;

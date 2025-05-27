@@ -63,11 +63,6 @@ public class MemberController {
     public String join() {
         return "member/Join"; // 회원가입 페이지 뷰
     }
-    
-    @RequestMapping("/find")
-    public String find() {
-        return "member/Find"; // 회원가입 페이지 뷰
-    }    
 
     @ResponseBody
     @RequestMapping("/IdCheck")
@@ -84,7 +79,7 @@ public class MemberController {
     public String join_us(@RequestParam(value= "file", required = false) MultipartFile file, MemberVO vo, Model model) {
         String loc = context.getRealPath("/resources/file/");
         FileOutputStream fos;
-        String fileDemo = null;
+        String fileDemo = "null";
 
         if (file != null && !file.isEmpty()) {
             fileDemo = file.getOriginalFilename();
@@ -113,6 +108,30 @@ public class MemberController {
     public String join_success() {
         return "member/Join_success";
     }
+    
+    // 아이디/ 비밀번호 찾기 관련
+    @RequestMapping("/find")
+    public String find() {
+        return "member/Find"; // 아이디/비밀번호 찾기
+    }    
+
+    @ResponseBody
+    @PostMapping("/findPw")
+    public String findPw(MemberVO vo) {
+    	return mapper.findPw(vo);
+    }
+    
+    @ResponseBody
+    @PostMapping("/findId1")
+    public String findId1(MemberVO vo) {	
+    	return mapper.findId1(vo);	
+    }
+    
+    @ResponseBody
+    @PostMapping("/findId2")
+    public String findId2(MemberVO vo) {	
+    	return mapper.findId2(vo);
+    }   
 
     // ** 마이페이지 컨트롤러 추가 **
     @RequestMapping("/mypage")
@@ -210,24 +229,23 @@ public class MemberController {
         return "mypage/MyGallery";
     }
     
-//    @GetMapping("/MyQna")
-//    public String MyQna(MemberVO vo, HttpSession session, Model model) {
-//        MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-//        if (mvo == null) {
-//            return "redirect:/login"; // 로그인 안 되어 있으면 로그인 페이지로 이동
-//        }
-//        model.addAttribute("member", mvo);
-//        return "mypage/MyQna";   	
-//    }
-//    
-//    @GetMapping("/MyReview")
-//    public String MyReview(MemberVO vo, HttpSession session, Model model) {
-//        MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-//        if (mvo == null) {
-//            return "redirect:/login"; // 로그인 안 되어 있으면 로그인 페이지로 이동
-//        }
-//        model.addAttribute("member", mvo);
-//        return "mypage/MyReview";
-//    }    
+    // 회원탈퇴
+	@RequestMapping("/delete")
+	public String delete(String id, HttpSession session) {
+		
+		System.out.println(id);
+		int cnt = mapper.delete(id);
+		// * 결과 값 처리
+		if(cnt>0) {
+			//삭제 성공
+			System.out.println("성공");
+			session.invalidate();
+		}else {
+			//삭제 실패
+			System.out.println("실패");
+		}
+		
+		return "Main";
+	}   
     
 }

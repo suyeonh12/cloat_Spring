@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" %>
 <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 
-	<section class="content join">
+	<section class="content">
 		<div class="inner inner_500">
 			<h2 class="page_name2">내 정보수정</h2>
 			<form action="login_to" method="post">

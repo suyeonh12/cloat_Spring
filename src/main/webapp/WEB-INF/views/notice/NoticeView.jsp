@@ -37,8 +37,6 @@
         </div>		   
         
         <div class="bttn_wrap">
-            <!-- 해당 글 작성자 또는 관리자일 경우 버튼 표시 -->
-         
          	<!-- 해당 글 작성자 / admin 만 보임 -->
 			<c:if test="${sessionScope.mvo.id eq notice.admin_id or sessionScope.mvo.user_type eq 'ADMIN'}">        
 			<div>
@@ -53,7 +51,8 @@
 					<img src="resources/images/bk_arr_top.png" alt="">TOP
 				</button>            	
             </div>				
-        </div>				
+        </div>	
+        			
     </div>	
 </section>
 

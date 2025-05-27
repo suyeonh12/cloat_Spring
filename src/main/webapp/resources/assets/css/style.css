@@ -7,13 +7,16 @@
 }
 
 /* 초기화 */
+*{
+	box-sizing: border-box;
+}
 html {overflow-y:scroll;font-size: 1rem;}
 body {margin:0;padding:0;font-size:1rem;font-family:'Paperlogy', sans-serif;background:#fff;color: #000;}
 html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
 h1, h2, h3, h4, h5, h6 {font-family:'Paperlogy', sans-serif;font-weight: 500;}
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
 
-ul, dl,dt,dd {margin:0;padding:0;list-style:none}
+ul,ol,dl,dt,dd,li {margin:0;padding:0;list-style:none;}
 legend {position:absolute;margin:0;padding:0;font-size:0;line-height:0;text-indent:-9999em;overflow:hidden}
 label, input, button, select, img {vertical-align:middle;font-family:'Paperlogy', sans-serif;font-size: 1rem;margin: 0;padding: 0;}
 input, button {margin:0;padding:0;}
@@ -36,6 +39,10 @@ a:focus, a:focus-within, a:focus-visible, a:hover {
 .bttn_sbm:focus, .bttn_sbm:focus-within, .bttn_sbm:focus-visible, .bttn_sbm:hover,
 .ipt_sbm:focus, .ipt_sbm:focus-within, .ipt_sbm:focus-visible, .ipt_sbm:hover {
     color: #fff;
+}
+.bttn_sbm2.wh:focus, .bttn_sbm2.wh:focus-within, .bttn_sbm2.wh:focus-visible, .bttn_sbm2.wh:hover,
+.bttn_sbm.wh:focus, .bttn_sbm.wh:focus-within, .bttn_sbm.wh:focus-visible, .bttn_sbm.wh:hover{
+	color: var(--main);
 }
 
 input:focus, input[type=checkbox]:focus, input[type=file]:focus, input[type=radio]:focus,
@@ -81,6 +88,7 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 }
 
 .g-icon, .material-symbols-rounded{
+	font-family: 'Material Symbols Rounded';
 	font-variation-settings: 'wght' 300;
 }
 
@@ -95,17 +103,23 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 	cursor: pointer;
 	gap: 6px;
 }
+.bttn.disabled, .bttn.disabled:focus-within, .bttn.disabled:focus-visible, .bttn.disabled:hover{
+	background: #ccc;
+	border-color: #ccc;
+	color: #999;
+}
 .bttn_cancle{
 	background: #f0f0f0;
 }
 .ipt_tt{
-    padding: 12px 14px;
+    padding: 10px 14px;
     font-size: 1rem;
     border: solid 1px gray;
     border-radius: 4px;
 }
 .ipt_sbm, .bttn_sbm{
 	background: var(--main);
+	border: solid 1px var(--main);
 	color: white;
     border: none;
     padding: 4px 16px;
@@ -114,9 +128,14 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 .bttn_sbm2{
     font-size: 1.125rem;
     background: var(--main);
+    border: solid 1px var(--main);
     color: white;
     border-radius: 4px;
     padding: 12px;
+}
+.bttn_sbm2.wh{
+	background: #fff;
+	color: var(--main);
 }
 :not(.bttn_wrap) .bttn_smb2{
 	margin-top: 20px;
@@ -124,8 +143,20 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 .sel{
 	appearance: none;
 	padding: 6px 30px 6px 10px;
-	background: url('../../../resources/images/select_tri.png') no-repeat 90% center;
 	outline: 0;
+	background: url('../../../resources/images/select_tri.png') no-repeat 90% center;
+}
+.form_ul .sel{
+	padding: 10px 30px 10px 14px;
+    border: solid 1px gray;
+    border-radius: 4px;
+	background: url('../../../resources/images/select_tri.png') no-repeat calc(100% - 16px) center;
+}
+.join .bttn_sbm2{
+	margin-top: 20px;
+}
+.join .chkbox_div {
+    margin-top: 2px;
 }
 .txtarea{
     width: 100%;
@@ -136,7 +167,6 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
     line-height: 1.333;
     min-height: 100px;
 	border-radius: 4px;
-    font-size: 1rem;
 }
 
 .flex_dir_col{
@@ -206,6 +236,55 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 	background: var(--main);
 }
 .chkbox_div input[type="checkbox"]:checked + .chk_btn:after{opacity: 1;}
+
+/*라디오 박스 커스텀*/
+.radio_div{
+	display: flex;
+	align-items: center;
+}
+.radio_div input[type="radio"]{
+	display: none;
+}
+.radio_div label{
+	cursor: pointer;
+	font-weight: 400;
+    font-size: 95%;	
+    display: flex;
+    align-items: center;    
+}
+.radio_div .rad_btn{
+	width: 16px;
+	aspect-ratio: 1;
+	flex: 0 0 auto;
+	border: solid 1px #ccc;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	transition: all .2s;
+}
+.radio_div .rad_btn:after{
+	display: block;
+	content: '';
+	position: absolute;
+	width: 8px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--main);
+	opacity: 0;
+	transition: all .2s;
+}
+.radio_div .rad_txt{
+	padding-left: 6px;
+}
+
+.radio_div input[type="radio"]:checked + label .rad_btn{
+	border-color: var(--main);
+}
+.radio_div input[type="radio"]:checked + label .rad_btn:after{
+	opacity: 1;
+}
 
 /* 약관 css */
 .agree_top{
@@ -310,10 +389,10 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 	width: 34px;
 }
 .pop_tit{
-    text-align: center;
+text-align: center;
     font-weight: 500;
-    font-size: 1.3rem;
-    margin-bottom: 1.5rem;	
+    font-size: 20px;
+    margin-bottom: 16px;
 }
 .pop_cont{
     width: 100%;
@@ -321,21 +400,21 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
     overflow-y: auto;	
     padding: 10px;
 }
-.pop_cont::-webkit-scrollbar{
+.pop_cont .content_desc{
+	font-size: 1rem;
+}
+*:not(body)::-webkit-scrollbar{
 	background: transparent;
     width: 10px;
 }
-.pop_cont::-webkit-scrollbar-thumb{
+*:not(body)::-webkit-scrollbar-thumb{
     border-radius: 6px;
     background: gray;
     background-clip: padding-box;
     border: 2px solid transparent;
 }
-.pop_cont::-webkit-scrollbar-track{
+*:not(body)::-webkit-scrollbar-track{
 	background: transparent;
-}
-.pop_cont .content_desc{
-	font-size: 1rem;
 }
 
 /* header */
@@ -772,6 +851,9 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 	display: flex;
 	justify-content: center;
 	gap: 4px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;	
 }
 .search_form .sel,
 .search_form .ipt_tt{
@@ -780,11 +862,11 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 	border: solid 1px gray;
 }
 .search_form .ipt_tt{
-	width: 240px;
+	width: 100%;
 	max-width: 100%;
-	padding: 8px 10px;
+	padding: 6px 10px;
+	flex: 1;
 }
-
 /* 회원가입, 로그인 등 */
 .form_ul{
 	width: 100%;
@@ -816,7 +898,7 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 .join input[name="id"]{
 	padding-right: 90px;
 }
-.join .po_rel .po_ab{
+.form_ul .po_rel .po_ab{
 	position: absolute;
     top: 50%;
     transform: translateY(-50%); 
@@ -875,8 +957,8 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 	max-width: 100%;
     width: 450px;
 }
-.join_success .bttn{
-	font-size: 20px;
+.join_success .bttn_sbm {
+    font-size: 20px;
 }
 
 /* 파일 업로드 부분 */
@@ -1068,7 +1150,7 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 .clk_intro{
 	text-align: center;
 }
-.inner > .clk_wrap + .clk_bttn_wrap{
+.clk_bttn_wrap{
 	margin-top: 6px;	
 }
 .clk .bttn_sbm2{
@@ -1077,6 +1159,10 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 }
 .bttn_sbm2[disabled] {
     background: #a0a0a0;
+}
+.clk_intro{
+    margin-bottom: 24px;
+    font-size: 18px;	
 }
 .clk_wrap{
 	position: relative;
@@ -1139,5 +1225,210 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
     text-align: center;
     justify-content: center;
     margin-bottom: 16px;
-    font-size: 30px;
+    font-size: 26px;
+}
+/*find - 아이디/비밀번호 찾기*/
+.tabTit{
+	display: flex;
+    margin-bottom: 20px;
+}
+.tabTit > li{
+    width: 50%;
+    text-align: center;
+    background: #fff;
+    padding: 12px 10px;
+    cursor: pointer;
+    border-bottom: solid 3px #eee;
+}
+.tabTit > li.on{
+	border-color: var(--main);
+}
+.tabCont{
+	display: none;
+}
+.tabCont.on{
+	display: block;
+}
+.tabCont .radio_wrap{
+	display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.tabCont .radio_wrap .radio_div{
+	flex: 0 0 auto;
+}
+.tabCont .bttn_sbm2{
+	margin-top: 20px;
+}
+.popWrap_find .popBox{
+	width: 400px;
+	padding: 40px 20px 30px;
+}
+.popWrap_find .pop_cont{
+	height: auto;
+    text-align: center;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+/*지도*/
+.map .tabTit{
+    display: flex;
+    width: 100%;
+    height: 60px;
+    border: solid 1px #eee;
+}
+.map .tabTit > li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s;
+    cursor: pointer;	
+    background: #fcfcfc;
+    border-bottom-color: #ccc;
+    padding: 0;
+}
+.map .tabTit > li > a{
+	display: flex;
+	width: 100%;
+	height: 100%;
+    align-items: center;
+    justify-content: center;	
+}
+.map .tabTit > li.on{
+	background: #fff;
+	border-bottom-color: var(--main);
+}
+.map .tabTit > li.on > a,
+.map .tabTit > li.on > a:hover{
+	color: var(--main);
+	font-weight: 500;
+	transition: all .2s;
+}
+.map .search_form{
+	margin: 40px auto;
+}
+.map .search_form > form{
+    border: solid 1px #eee;
+    border-radius: 4px;
+    padding: 14px;
+    max-width: 500px;
+}
+.map .map_container {
+	display: flex;
+	width: 100%;
+	height: 400px;
+	border: solid 1px #eee;
+}
+.map_list{
+	width: 40%;
+	height: 100%;
+    overflow-y: auto;
+    padding: 6px;
+    padding-right: 0;
+}
+.map_list::-webkit-scrollbar{
+	background: transparent;
+    width: 10px;
+}
+.map_list::-webkit-scrollbar-thumb{
+    border-radius: 6px;
+    background: var(--main);
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+.map_list::-webkit-scrollbar-track{
+	background: transparent;
+}
+.map_list .cont{
+	border: 1px solid #eee;
+	padding: 10px;	
+	cursor: pointer;
+	transition: .2s;
+}
+.map_list .cont:hover{
+	border-color: var(--main);
+	background: var(--bg);
+}
+.map .map_area {
+	width: 100%;
+	flex: 1;
+}
+.map .title_area{
+	font-size: 15px;
+}
+.map .title_area .sub_tit{
+	background: var(--main);
+	color: #fff;
+    padding: 3px 4px;
+    font-size: 80%;	
+    vertical-align: middle;
+    margin-right: 4px;
+}
+.map .title_area .tit{
+	line-height: 25px;
+	vertical-align: middle;
+}
+.map .data_list_area{
+	margin-top: 6px;
+}
+.map .data_list_area > li{
+	display: flex;
+    align-items: flex-start;
+    font-size: 90%;	
+    margin-top: 4px;
+}
+.map .data_list_area .ico{
+    margin-right: 3px;
+    width: 16px;
+    aspect-ratio: 1;
+    flex: 0 0 auto;
+    position: relative;
+    top: 2px;
+}
+.map .map_area #map{
+    width: 100%;
+    height: 100%;	
+}
+.map #map .info_window{
+    background: #fff;
+    border: solid 1px #000;
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.1);
+    overflow: hidden;	
+}
+.map #map .info_window .title_area{
+    padding: 8px;
+}
+.map #map .info_window .title_area .tit{
+    font-weight: 500;
+}
+.map #map .info_window .info_btm{
+	display: flex;
+}
+.map #map .info_window .info_btm > li{
+	width: 100%;
+	flex: .55;
+}
+.map #map .info_window .info_btm > li + li{
+	border-left: solid 1px #ccc;
+	flex: .45;
+}
+.map #map .info_window .info_btm > li > a{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	white-space: nowrap;
+    gap: 4px;
+    font-size: 14px;
+    background: #eee;
+    padding: 6px 10px;    
+    transition: all .2s;
+}
+.map #map .info_window .info_btm > li:hover > a{
+	
+}
+.map #map .info_window .info_btm img{
+	width: 18px;
 }

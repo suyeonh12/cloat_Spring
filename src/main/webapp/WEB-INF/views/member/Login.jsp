@@ -1,7 +1,7 @@
 <%@include file="/WEB-INF/views/includes/header.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<section class="content join login">
+<section class="content login">
 	<div class="inner inner_500">
 		<h2 class="page_name2">로그인</h2>
 		<form action="login_do" method="post">
@@ -27,6 +27,9 @@
 				</li>
 				<li>
 					<input type="submit" value="로그인" class="bttn bttn_sbm2">
+				</li>
+				<li>
+					<a href="join" class="bttn bttn_sbm2 wh">회원가입</a>
 				</li>
 			</ul>
 		</form>

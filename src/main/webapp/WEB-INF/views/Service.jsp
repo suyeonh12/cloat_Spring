@@ -4,50 +4,55 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 					
-<section class="content service">
+<section class="content">
+   <div class="page_top">
+      <div class="inner">
+         <h2 class="pageName">서비스</h2>
+      </div>
+   </div>
 	<div class="inner inner_400">
-		<h2 class="page_name2">서비스</h2>
-		<p class="clk_intro">CLOAT만의 이미지 클로킹 서비스로 <br>안심하고 당신의 순간을 공유하세요</p>
-		<div class="clk_wrap">
-			<h1 class="clk clk_complete none">변환 완료!</h1>
-			<!-- 변환전 -->
-			<div class="clk_pre clk">
-				<div class="filebox preview-image">
-					<label for="profile_img" class="label_hidden"></label>
-					<div class="upload-display">
-						<img src="resources/images/img_thumb.png" alt="">
+		<div class="service">
+			<p class="clk_intro">CLOAT만의 이미지 클로킹 서비스로 <br>안심하고 당신의 순간을 공유하세요</p>
+			<div class="clk_wrap">
+				<h1 class="clk clk_complete none">변환 완료!</h1>
+				<!-- 변환전 -->
+				<div class="clk_pre clk">
+					<div class="filebox preview-image">
+						<label for="profile_img" class="label_hidden"></label>
+						<div class="upload-display">
+							<img src="resources/images/img_thumb.png" alt="">
+						</div>
+						<input class="upload-name" value="파일선택" disabled="disabled">
+						<input type="file" name="file" id="profile_img" class="upload-hidden" accept="image/*">
 					</div>
-					<input class="upload-name" value="파일선택" disabled="disabled">
-					<input type="file" name="file" id="profile_img" class="upload-hidden" accept="image/*">
 				</div>
+				
+				<!-- 변환 후 이미지 -->
+				<div class="clk_after clk none">
+					<a href="#" target="_blank" id="cloking_after">
+						<img src="resources/images/img_thumb.png" hidden>
+					</a>			
+				</div>
+				
+				<!-- 변환중 -->
+				<div class="clk_ing clk loading-wrap none">
+					<div class="loading-spinner"></div>
+					<p>이미지를 안전하게 변환중입니다</p>
+				</div>		
 			</div>
 			
-			<!-- 변환 후 이미지 -->
-			<div class="clk_after clk none">
-				<a href="#" target="_blank" id="cloking_after">
-					<img src="resources/images/img_thumb.png" hidden>
-				</a>			
-			</div>
-			
-			<!-- 변환중 -->
-			<div class="clk_ing clk loading-wrap none">
-				<div class="loading-spinner"></div>
-				<p>이미지를 안전하게 변환중입니다</p>
+			<!-- 버튼들 -->
+			<div class="clk_bttn_wrap">
+				<div class="clk_pre clk">
+					<button class="bttn bttn_sbm2 disabled" id="change">딥페이크 방지 이미지로 변환</button>
+				</div>
+				
+				<div class="clk_after clk none bttn_wrap">
+					<a href="#" class="bttn bttn_sbm2" download id="clkDown"><img src="resources/images/ico_download.svg">다운로드</a>
+					<button type="button" class="bttn bttn_sbm2" id="clkShare"><img src="resources/images/ico_share.svg">공유하기</button>
+				</div>			
 			</div>		
-		</div>
-		
-		<!-- 버튼들 -->
-		<div class="clk_bttn_wrap">
-			<div class="clk_pre clk">
-				<button class="bttn bttn_sbm2" id="change" disabled="disabled">딥페이크 방지 이미지로 변환</button>
-			</div>
-			
-			<div class="clk_after clk none bttn_wrap">
-				<a href="#" class="bttn bttn_sbm2" download id="clkDown">다운로드</a>
-				<button type="button" class="bttn bttn_sbm2" id="clkShare">공유하기</button>
-			</div>			
-		</div>
-					
+		</div>			
 	</div>
 
 </section>
@@ -67,7 +72,7 @@ fileTarget.on('change', function() {
     }
 
     $(this).siblings('.upload-name').val(filename);
-    $('#change').removeAttr('disabled');
+    $('#change').removeClass('disabled');
 });
 
 // 이미지 미리보기 및 유효성 검사 (확장자 & 용량)

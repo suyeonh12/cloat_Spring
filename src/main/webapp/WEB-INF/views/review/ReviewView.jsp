@@ -119,7 +119,21 @@
         
         <div class="bttn_wrap">
 			<div>
-				<a href="ReviewWrite" class="bttn ipt_sbm">글쓰기</a>
+	        	<button onClick="writeBtn()" class="bttn ipt_sbm">글쓰기</button>
+				<script>
+				      let writeBtn = () => {
+				         // 로그인 상태 아니면
+				         //alert('로그인해주세요');
+				         <c:if test="${!empty mvo}">
+				            window.location.href = "Write";
+				         </c:if>
+				         <c:if test="${empty mvo}">
+				            alert('로그인해주세요');
+				         </c:if>
+				         // 로그인 상태면
+				         // -> 아이디 정보 가지고 글쓰기 페이지로 이동
+				      }
+				   </script>
 				<!-- 해당 글 작성자 / ADMIN만 보임 -->
 				<c:if test="${sessionScope.mvo.id eq review.id or sessionScope.mvo.user_type eq 'ADMIN'}">
 				<button onClick="location.href='ReviewEdit.jsp?no=${review.review_idx}'" class="bttn">수정</button>

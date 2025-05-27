@@ -34,17 +34,26 @@
                     </div>
                 </c:if>
             </div>
-        </div>				
+        </div>	
+        
         <div class="bttn_wrap">
-            <!-- 해당 글 작성자 또는 관리자일 경우 버튼 표시 -->
-			<c:if test="${sessionScope.mvo.id eq news.admin_id or sessionScope.mvo.user_type eq 'ADMIN'}">
-                <button onClick="location.href='newsEdit.jsp?no=${news.news_no}'" class="bttn">수정</button>
-                <button onClick="location.href='newsDelete.jsp?no=${news.news_no}'" class="bttn">삭제</button>
+         	<!-- 해당 글 작성자 / admin 만 보임 -->
+			<c:if test="${sessionScope.mvo.id eq news.admin_id or sessionScope.mvo.user_type eq 'ADMIN'}">        
+			<div>
+				<a href="NewswWrite" class="bttn ipt_sbm">글쓰기</a>
+                <button onClick="location.href='NewsEdit.jsp?no=${news.news_idx}'" class="bttn">수정</button>
+                <button onClick="location.href='NewsDelete.jsp?no=${news.news_idx}'" class="bttn">삭제</button>
+            </div>
             </c:if>
             <div class="ml-auto">
-        		<a href="${pageContext.request.contextPath}/NewsList?pageNum=${pageNum}" class="bttn ipt_sbm">목록</a>
-        	</div>
-        </div>				
+            	<a href="${pageContext.request.contextPath}/NewsList?pageNum=${pageNum}" class="bttn ipt_sbm">목록</a>
+				<button class="bttn" onClick="pageTop()">
+					<img src="resources/images/bk_arr_top.png" alt="">TOP
+				</button>            	
+            </div>				
+        </div>        
+        
+        				
     </div>	
 </section>
 

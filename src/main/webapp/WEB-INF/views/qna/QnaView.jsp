@@ -117,7 +117,21 @@
 		
         <div class="bttn_wrap">
         	<div>
-	        	<a href="ReviewWrite" class="bttn ipt_sbm">글쓰기</a>
+	        	<button onClick="writeBtn()" class="bttn ipt_sbm">글쓰기</button>
+				<script>
+				      let writeBtn = () => {
+				         // 로그인 상태 아니면
+				         //alert('로그인해주세요');
+				         <c:if test="${!empty mvo}">
+				            window.location.href = "QnaWrite";
+				         </c:if>
+				         <c:if test="${empty mvo}">
+				            alert('로그인해주세요');
+				         </c:if>
+				         // 로그인 상태면
+				         // -> 아이디 정보 가지고 글쓰기 페이지로 이동
+				      }
+				   </script>	        	
 	            <!-- 해당 글 작성자 또는 관리자일 경우 버튼 표시 -->
 				<c:if test="${sessionScope.mvo.id eq qna.id or sessionScope.mvo.user_type eq 'ADMIN'}">
 	                <button onClick="location.href='QnaEdit.jsp?no=${qna.qna_idx}'" class="bttn">수정</button>

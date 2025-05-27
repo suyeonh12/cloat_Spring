@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.smhrd.news.NewsVO;
+
 @Controller 
 public class NewsController {
 	
@@ -108,7 +110,7 @@ public class NewsController {
 	public String NewsUpload(NewsVO vo, @RequestParam(value= "file", required = false)MultipartFile file) {
 		String loc = context.getRealPath("/resources/file/");
 		FileOutputStream fos;
-		String fileDemo = null;
+		String fileDemo = "null";
 		if (file != null && !file.isEmpty()) {
 			fileDemo = file.getOriginalFilename();
 			if(fileDemo.length() > 0) {
