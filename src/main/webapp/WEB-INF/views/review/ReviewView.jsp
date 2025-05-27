@@ -125,7 +125,7 @@
 				         // 로그인 상태 아니면
 				         //alert('로그인해주세요');
 				         <c:if test="${!empty mvo}">
-				            window.location.href = "Write";
+				            window.location.href = "ReviewWrite";
 				         </c:if>
 				         <c:if test="${empty mvo}">
 				            alert('로그인해주세요');
