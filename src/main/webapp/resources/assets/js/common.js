@@ -94,3 +94,34 @@ var agent =  {
 	_html.className += _class;
    
  }();
+ 
+// 모바일 헤더
+
+//menu_wrap_on
+function menuToggle (){
+	$('.menu_wrap, .header').toggleClass('menu_on');
+	$('html, body').toggleClass('hd');
+};
+
+//submenu_on
+$(document).ready(function() {
+	$('.mo_link').click(function(e){
+	    e.preventDefault();
+
+		let moSubmenu = $(this).siblings('.submenu');
+	
+		if(moSubmenu){
+			var moSubmenuAttr = $(this).siblings('.submenu').css('display');
+			$('.submenu').slideUp(300);
+			if(moSubmenuAttr == 'none'){
+				$(this).parent('li').siblings('li').removeClass('open');
+				$(this).parent('li').addClass('open');
+				$(this).siblings('.submenu').slideDown(300);
+			}else{
+				$(this).parent('li').removeClass('open');
+				$(this).siblings('.submenu').slideUp(300); 
+			}
+		}
+	});
+});
+

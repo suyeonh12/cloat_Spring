@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 @media (max-width: 1220px) {
 	.inner:not(.inner_500, .inner_400){
 		padding-left: 10px !important;
@@ -5,11 +7,23 @@
 	}
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+	/*모바일 헤더로 전환*/
+	.header .depth,
+	.header .hd_util{
+		display: none;
+	}
+	.header .ham,
+	.menu_wrap{
+		display: flex;
+	}
+	
 	.floating{
 		background: 0;
 		padding: 0;
 		border-radius: 50%;
+        transform: none;
+        bottom: 10px;		
 	}
 	.floating_ul > li:not(:last-child){
 		display: none;
@@ -19,7 +33,11 @@
 	}
 	.floating_ul .txt{
 		display: none;
-	}
+	}	
+}
+
+@media (max-width: 768px) {
+
 }
 
 @media (max-width: 520px) {

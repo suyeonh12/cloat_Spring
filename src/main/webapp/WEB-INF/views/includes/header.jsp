@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:set var="cpath" value="${pageContext.request.contextPath}"/>
+
 <html lang="ko">
 
 <head>
@@ -33,6 +34,11 @@
          <h1 class="logo">
             <a href="${pageContext.request.contextPath}"><img src="resources/images/logo.svg" alt=""></a>
          </h1>
+		<div class="ham vw_mo" onClick="menuToggle()">
+			<div class="ham_bar"></div>
+			<div class="ham_bar"></div>
+			<div class="ham_bar"></div>
+		</div>         
          <ul class="depth">
             <li>
                <a href="about">CLOAT</a>
@@ -75,3 +81,34 @@
          </div>
       </div>
    </header>
+	<div class="menu_wrap vw_mo">
+		<div class="nav">
+			<ul class="menu">
+			   <li>
+			      <a class="mo_link">CLOAT</a>
+			      <ul class="submenu about-link">
+			         <li><a href="about?#why">Why?</a></li>
+			         <li><a href="about?#what">What is?</a></li>
+			         <li><a href="about?#how">How?</a></li>
+			         <li><a href="about?#team">팀 소개</a></li>
+			         <li><a href="about?#vision">비전</a></li>
+			      </ul>
+			   </li>
+			   <li>
+			      <a href="service">서비스</a>
+			   </li>
+			   <li>
+			      <a href="ReviewList">고객후기</a>
+			   </li>
+			   <li>
+			      <a class="mo_link">고객지원</a>
+			      <ul class="submenu">
+			         <li><a href="NoticeList">공지사항</a></li>
+			         <li><a href="NewsList">뉴스</a></li>
+			         <li><a href="QnaList">고객문의</a></li>
+			         <li><a href="map?type=청소년상담복지센터">도움기관 지도</a></li>
+			      </ul>
+			   </li>
+			</ul>
+		</div>
+	</div>   

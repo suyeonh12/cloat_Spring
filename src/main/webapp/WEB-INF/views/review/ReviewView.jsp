@@ -6,7 +6,7 @@
 <section class="content board view list">
     <div class="page_top">
         <div class="inner">
-            <h2 class="pageName">리뷰</h2>
+            <h2 class="pageName">고객후기</h2>
         </div>
     </div>			
     <div class="inner">

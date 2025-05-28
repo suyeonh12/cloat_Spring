@@ -121,7 +121,7 @@
 				        if(window.FileReader){
 				            // 파일명 추출
 				            var filename = $(this)[0].files[0].name;
-				            console.log(filename);
+				            
 				            if(filename != ''){
 				            	$('.pre_file_path').remove();
 				            }
