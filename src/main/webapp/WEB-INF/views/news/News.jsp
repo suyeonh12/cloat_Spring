@@ -75,11 +75,21 @@
 
 					<%-- 페이지 번호 반복 --%>
 					<c:forEach var="i" begin="${startPageNum}" end="${endPageNum}">
-						<li class="page-item ${pageNum == i ? 'active' : ''}"><a
-							class="page-link animate__animated"
-							href="NewsList?pageNum=${i}&condition=${condition}&keyword=${encodedK}">${i}</a>
-						</li>
-					</c:forEach>
+						<c:choose>
+							<c:when
+								test="${not empty searchValue and not empty searchContent}">
+								<li class="page-item ${pageNum == i ? 'active' : ''}"><a
+									class="page-link animate__animated"
+									href="NewsSearch?pageNum=${i}&searchValue=${searchValue}&searchContent=${searchContent}">
+										${i} </a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item ${pageNum == i ? 'active' : ''}"><a
+									class="page-link animate__animated"
+									href="NewsList?pageNum=${i}"> ${i} </a></li>
+							</c:otherwise>
+						</c:choose>
+			   		</c:forEach>
 
 					<%-- 마지막 페이지가 아니면 '>' 버튼 활성화 --%>
 					<c:if test="${pageNum < totalPageCount}">

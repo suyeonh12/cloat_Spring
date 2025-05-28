@@ -106,12 +106,12 @@
             </div>
          </div>
          <div class="inner">
-            <p>팀 CLOAT는 스마트인재개발원에서 'sw엔지니어블라블라' 과정에서 배워서 어쩌고..?</p>
+            <p>팀 CLOAT는 스마트인재개발원 '데이터분석 SW엔지니어 양성과정'에서 핵심 프로젝트</p>
             <ul class="team_ul">
                <li>
                   <div class="thumb"><img src="resources/images/team_yj.png"></div>
                   <div class="name">주연진</div>
-                  <div class="position">팀장 · Backend</div>
+                  <div class="position">팀장 · BackEnd</div>
                   <div class="role">전체 기획 총괄, DB 설계</div>
                   <a href="https://github.com/yeonjinju" target="_blank" class="git">https://github.com/yeonjinjuT</a>
                </li>
@@ -127,14 +127,14 @@
                   <div class="name">나규민</div>
                   <div class="position">BackEnd</div>
                   <div class="role">회원관리기능 개발, 개인정보책임자</div>
-                  <a href="https://github.com/suyeonh12" target="_blank" class="git">https://github.com/suyeonh12</a>
+                  <a href="https://github.com/suyeonh12" target="_blank" class="git">https://github.com/gyuminna</a>
                </li>
                <li>
                   <div class="thumb"><img src="resources/images/team_sy.png"></div>
                   <div class="name">한수연</div>
                   <div class="position">FrontEnd</div>
                   <div class="role">화면구현, 고객서비스 담당</div>
-                  <a href="https://github.com/gyuminna" target="_blank" class="git">https://github.com/gyuminna</a>
+                  <a href="https://github.com/gyuminna" target="_blank" class="git">https://github.com/suyeonh12</a>
                </li>												
             </ul>
          </div>

@@ -56,20 +56,32 @@
     
     
 	<select id="NoticeSearch" resultType="com.smhrd.notice.NoticeVO">
+		SELECT * FROM (
+		SELECT ROWNUM rn, a.*
+            FROM(
 		select * from tb_notice
 		<where>
 			<choose>
-				<when test="param1 == 'notice_title'">
-					notice_title LIKE '%' || #{param2} || '%'
+				<when test="searchValue == 'notice_title'">
+					notice_title LIKE '%' || #{searchContent} || '%'
 				</when>
-				<when test="param1 == 'notice_content'">
-					notice_content LIKE '%' || #{param2} || '%'
+				<when test="searchValue == 'notice_content'">
+					notice_content LIKE '%' || #{searchContent} || '%'
 				</when>
 				<otherwise>
-					admin_id = null
+					admin_id is null
 				</otherwise>
 			</choose>
 		</where>
+		ORDER BY created_at DESC) a	      
+		<where> 
+			<![CDATA[
+        	ROWNUM <= #{endRow}
+    		]]>
+		</where> 
+		) <![CDATA[
+		WHERE rn >= #{startRow}
+		]]>
 	</select>
 
 	<insert id="write" parameterType="com.smhrd.notice.NoticeVO">

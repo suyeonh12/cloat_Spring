@@ -32,4 +32,8 @@ public interface NewsMapper {
 
 	public List<NewsVO> NewsSearch(@Param("searchValue") String searchValue, @Param("searchContent") String searchContent,
 									@Param("startRow") int startRow, @Param("endRow") int endRow);
+	
+	public int updateNewsEdit(NewsVO vo);   // 씀
+	NewsVO selectNewsByNo(int news_idx);  // 씀
+	int deleteNewsByNo(int news_idx);
 }

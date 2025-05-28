@@ -92,7 +92,28 @@
 		)
 	</insert>
     
-    
+    <!-- 글 수정 기능 -->
+   <select id="selectNewsByNo" parameterType="int"
+      resultType="com.smhrd.news.NewsVO">
+      SELECT news_idx, news_title, news_content, news_file, news_views,
+      admin_id, created_at
+      FROM tb_news
+      WHERE news_idx = #{news_idx}
+   </select>
+
+   <update id="updateNewsEdit"
+      parameterType="com.smhrd.news.NewsVO">
+      UPDATE tb_news
+      SET news_title = #{news_title},
+      news_content = #{news_content},
+      news_file = #{news_file, jdbcType=VARCHAR}
+      WHERE news_idx = #{news_idx}
+   </update>
+   
+    <!-- 게시글 삭제 -->
+   <delete id="deleteNewsByNo" parameterType="int">
+      DELETE FROM tb_news WHERE news_idx = #{news_idx}
+   </delete>
     
 
 </mapper>

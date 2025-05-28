@@ -22,6 +22,8 @@
 <!-- summernote 에디터 cdn, css 충돌 위험 가능하면 에디터 사용 페이지에서만 추가되도록-->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
 <script src="${pageContext.request.contextPath}/resources/assets/js/common.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/aos_style.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/aos.css" />
 </head>
 
 <body>

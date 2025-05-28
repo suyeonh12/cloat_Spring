@@ -20,4 +20,13 @@ public class NewsService {
         return mapper.getNews(noticeIdx);
     }
 
+    // 글 수정 삭제
+    public int updateNewsEdit(NewsVO vo) {
+        return mapper.updateNewsEdit(vo);
+    }
+    public int deleteNews(int news_idx) {
+               
+        return mapper.deleteNewsByNo(news_idx);
+    }
+    
 }

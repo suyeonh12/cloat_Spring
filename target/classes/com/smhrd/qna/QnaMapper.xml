@@ -15,17 +15,17 @@
     </select>
 
 	<select id="getTotalCountBySearch" resultType="int">
-		select count(*) from tb_news
+		select count(*) from tb_qna
 		<where>
 			<choose>
-				<when test="searchValue == 'news_title'">
-					news_title LIKE '%' || #{searchContent} || '%'
+				<when test="searchValue == 'qna_title'">
+					qna_title LIKE '%' || #{searchContent} || '%'
 				</when>
-				<when test="searchValue == 'news_content'">
-					news_content LIKE '%' || #{searchContent} || '%'
+				<when test="searchValue == 'qna_content'">
+					qna_content LIKE '%' || #{searchContent} || '%'
 				</when>
 				<otherwise>
-					admin_id is null
+					id is null
 				</otherwise>
 			</choose>
 		</where>
@@ -51,20 +51,35 @@
     
     <!-- 검색기능 -->
    <select id="QnaSearch" resultType="com.smhrd.qna.QnaVO">
-      select * from tb_qna
-      <where>
-         <choose>
-            <when test="param1 == 'qna_title'">
-               qna_title LIKE '%' || #{param2} || '%'
-            </when>
-            <when test="param1 == 'qna_content'">
-               qna_content LIKE '%' || #{param2} || '%'
-            </when>
-            <otherwise>
-               id is null
-            </otherwise>
-         </choose>
-      </where>
+      SELECT * FROM (
+		SELECT ROWNUM rn, a.*
+            FROM(
+		select * from tb_qna
+		<where>
+			<choose>
+				<when test="searchValue == 'qna_title'">
+					qna_title LIKE '%' || #{searchContent} || '%'
+				</when>
+				<when test="searchValue == 'qna_content'">
+					qna_content LIKE '%' || #{searchContent} || '%'
+				</when>
+				<when test="searchValue == 'id'">
+					id LIKE '%' || #{searchContent} || '%'
+				</when>
+				<otherwise>
+					id is null
+				</otherwise>
+			</choose>
+		</where>
+		ORDER BY created_at DESC) a	      
+		<where> 
+			<![CDATA[
+        	ROWNUM <= #{endRow}
+    		]]>
+		</where> 
+		) <![CDATA[
+		WHERE rn >= #{startRow}
+		]]>
    </select>
    
    <!-- 글쓰기 기능 -->

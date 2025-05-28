@@ -1156,6 +1156,8 @@ text-align: center;
 .clk .bttn_sbm2{
 	width: 100%;
 	margin-top: 0;
+    padding: 12px;
+    font-size: 1.125rem;	
 }
 .bttn_sbm2[disabled] {
     background: #a0a0a0;
@@ -1434,27 +1436,108 @@ text-align: center;
 	width: 18px;
 }
 
-/* 여기부터 gpt */
-.main_good {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-  margin-top: 3rem;
+/* main */
+.main_banner{
+	background: var(--sub);
+	overflow: hidden;
 }
-.main_good li {
-  background: #f5f5f5;
-  padding: 1.5rem;
-  border-radius: 16px;
-  text-align: center;
+.main_banner > .inner{
+	height: 500px;
+	position: relative;
+	display: flex;
+    align-items: center;
+    max-width: 1000px;	
 }
-.main_good .tit {
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+.main_banner .thum{
+	position: absolute;
+	right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 30px;	
 }
-.main_good .cont {
-  color: #555;
-  font-size: 0.95rem;
+.main_banner .thum img{
+	display: block;
+	max-width: 100%;	
+}
+.main_banner .thum .obj_bf{
+	position: relative;
+	width: 250px;
+}
+.main_banner .thum .obj_bf:after{
+	display: block;
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--main);
+	opacity: .2;
+	visibility: hidden;
+}
+.main_banner .shield{
+	width: 200px;
+}
+.main_banner .txt{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 10px;	
+	font-size: 40px;
+}
+.main_banner .tit{
+	font-size: inherit;
+	font-weight: 600;
+}
+.main_banner .desc{
+	font-size: 54%;
+}
+.main_banner .bttn{
+	width: fit-content;
+    border-radius: 30px;
+    padding: 12px 20px;
+    margin-top: 16px;
+    transition: .2s;
+}
+.main_banner .bttn:hover{
+	background: var(--main);
+	color: #fff;
+}
+
+.main_good .main_tit{
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.main_good .main_tit .c_main{
+	font-weight: 900;
+}
+.main_good_ul{
+	display: flex;
+	gap: 20px;
+}
+.main_good_ul > li{
+	width: calc(25% - 20px);
+	height: auto;
+}
+.main_good_ul .box {
+    height: 100%;
+    background: #fefbf7;
+    padding: 30px 24px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.1);
+}
+.main_good_ul .tit{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.main_good_ul .desc{
+	
 }
 
 @media screen and (max-width: 768px) {

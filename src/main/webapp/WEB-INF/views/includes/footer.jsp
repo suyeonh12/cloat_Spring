@@ -38,6 +38,14 @@
 		</div>
 	</div>
 	
+	<!--aos-->
+	<script src="${pageContext.request.contextPath}/resources/assets/js/aos.js"></script>
+	<script>
+	  AOS.init({
+		easing: 'ease-out'
+	  });
+	</script>
+	<!--aos-->	
 	<script>
 		function popUp(txt) {
 			$(".popWrap_footer").show();
