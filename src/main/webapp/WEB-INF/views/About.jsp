@@ -57,11 +57,11 @@
                </div>
             </div>
             <div class="inner">
-               - CLOAT는~~ Clarity & Locking Of Authentic Teens
-               - 클로킹이란~~~
-               - Fawkes란 무엇인가~~
+               - CLOAT는~~ Clarity & Locking Of Authentic Teens <br>
+               - 클로킹이란~~~<br>
+               - Fawkes란 무엇인가~~<br>
                <div class="thumb">
-                  <img src="" alt="Fawkes 모델 구조도">
+                  Fawkes 모델 구조도 이미지?
                </div>
             </div>
       </div>
@@ -88,9 +88,7 @@
                2.클로킹 적용 (1초~3초)
                3.다운로드 및 안전한 공유 -->
                <div class="service_flow">
-                  <img src="img/0.png">
-                  <img src="img/1.png">
-                  <img src="img/2.png">
+                  서비스 플로우 이미지 있으면 좋을듯
                </div>
             </div>
       </div>
@@ -111,28 +109,28 @@
             <p>팀 CLOAT는 스마트인재개발원에서 'sw엔지니어블라블라' 과정에서 배워서 어쩌고..?</p>
             <ul class="team_ul">
                <li>
-                  <div class="thumb"><img src="img/team_yj.png"></div>
+                  <div class="thumb"><img src="resources/images/team_yj.png"></div>
                   <div class="name">주연진</div>
                   <div class="position">팀장 · Backend</div>
                   <div class="role">전체 기획 총괄, DB 설계</div>
                   <a href="https://github.com/yeonjinju" target="_blank" class="git">https://github.com/yeonjinjuT</a>
                </li>
                <li>
-                  <div class="thumb"><img src="img/team_bh.png"></div>
+                  <div class="thumb"><img src="resources/images/team_bh.png"></div>
                   <div class="name">정병호</div>
                   <div class="position">BackEnd</div>
                   <div class="role">클로킹 기능 구현, 암호화 담당, 보안책임자</div>
                   <a href="https://github.com/jbh6357" target="_blank" class="git">https://github.com/jbh6357</a>
                </li>
                <li>
-                  <div class="thumb"><img src="img/team_gm.png"></div>
+                  <div class="thumb"><img src="resources/images/team_gm.png"></div>
                   <div class="name">나규민</div>
                   <div class="position">BackEnd</div>
                   <div class="role">회원관리기능 개발, 개인정보책임자</div>
                   <a href="https://github.com/suyeonh12" target="_blank" class="git">https://github.com/suyeonh12</a>
                </li>
                <li>
-                  <div class="thumb"><img src="img/team_sy.png"></div>
+                  <div class="thumb"><img src="resources/images/team_sy.png"></div>
                   <div class="name">한수연</div>
                   <div class="position">FrontEnd</div>
                   <div class="role">화면구현, 고객서비스 담당</div>
@@ -185,13 +183,13 @@
 
    <script>
       $(document).ready(function () {
-         if (window.location.pathname.endsWith('about.html') && window.location.hash) {
+         if (window.location.pathname.endsWith('about') && window.location.hash) {
             let h_height = $('.header').outerHeight();
             let target = $(window.location.hash);
             if (target.length) {
                   setTimeout(function () {
                      $('html, body').scrollTop(target.offset().top - h_height);
-                  }, 70);
+                  }, 50);
             }
          }
       });

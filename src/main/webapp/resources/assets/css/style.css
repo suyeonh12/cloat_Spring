@@ -1529,12 +1529,12 @@ text-align: center;
 
 /* What is CLOAT? */
 .ab_what{
-
+	display: block;
 }
 
 /* How CLOAT Works? */
 .ab_how{
-
+	display: block;
 }
 .service_flow{
 	display: flex;
@@ -1552,7 +1552,7 @@ text-align: center;
 
 /* About the Team */
 .ab_team{
-	
+	display: block;
 }
 .team_ul {
 	display: flex;
@@ -1562,7 +1562,7 @@ text-align: center;
 }
 .team_ul li {
 	flex: 1 1 200px;
-	background: #e8f5e9;
+	background: var(--sub);
 	padding: 1rem;
 	border-radius: 10px;
 	text-align: center;
@@ -1592,7 +1592,7 @@ text-align: center;
 }
 .team_ul .position {
 	font-weight: bold;
-	color: #388e3c;
+	color: green;
 	margin-top: 2px;
 }
 .team_ul .role {

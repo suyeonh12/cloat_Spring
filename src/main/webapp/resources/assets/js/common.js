@@ -32,7 +32,7 @@ function pkView(el) {
 // header에서 cloat 메뉴의 링크 클릭시 이동
 $(document).on('click', '.about-link > li > a', function(e) {
     let targetHash = this.hash;
-    let aboutPage = 'about.html';
+    let aboutPage = 'about';
 
     if (location.pathname.endsWith(aboutPage)) {
         e.preventDefault();
@@ -43,7 +43,11 @@ $(document).on('click', '.about-link > li > a', function(e) {
         }
     } else {
         e.preventDefault();
-        window.location.href = aboutPage + targetHash;
+        if(targetHash == "#why"){
+        	window.location.href = aboutPage;
+        }else{
+        	window.location.href = aboutPage + targetHash;
+        }
     }
 });
 
