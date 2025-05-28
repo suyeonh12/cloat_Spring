@@ -40,8 +40,8 @@
 				<!-- admin 만 보임 --> 
 				<c:if test="${mvo.getUser_type() == 'ADMIN'}">
 				<button onClick="writeBtn()" class="bttn ipt_sbm">글쓰기</button>
-                <button onClick="location.href='NewsEdit.jsp?no=${news.news_idx}'" class="bttn">수정</button>
-                <button onClick="location.href='NewsDelete.jsp?no=${news.news_idx}'" class="bttn">삭제</button>
+                <button onClick="location.href='NewsEdit?no=${news.news_idx}'" class="bttn">수정</button>
+                <button onClick="location.href='NewsDelete?no=${news.news_idx}'" class="bttn">삭제</button>
 				<script>
 						let writeBtn = () => {		
 							window.location.href = "NewsWrite";		

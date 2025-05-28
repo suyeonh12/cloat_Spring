@@ -15,17 +15,36 @@
             </div>
          </div>
    </footer>
+    
    
-   <!-- 
    <aside class="floating">
-   	<div>24시간<br> 고객센터</div>
-   	<ul>
+   	<ul class="floating_ul">
    		<li>
-   			<a></a>
+   			<a href="QnaList">
+   				<div class="thumb"><img src="resources/images/float_qna.png" alt=""></div>
+   				<div class="txt">고객문의 <br>바로가기</div>
+   			</a>
+   		</li>   	
+   		<li>
+   			<a href="service">
+   				<div class="thumb"><img src="resources/images/float_service.png" alt=""></div>
+   				<div class="txt">클로킹서비스 <br>바로가기</div>
+   			</a>
    		</li>
+   		<li>
+   			<a href="map?type=청소년상담복지센터">
+   				<div class="thumb"><img src="resources/images/float_map.png" alt=""></div>
+   				<div class="txt">기관지도 <br>바로가기</div>
+   			</a>
+   		</li>   		
+   		<li>
+   			<a href="https://open.kakao.com/o/s7xb2Kyh" target="_blank">
+   				<div class="thumb"><img src="resources/images/float_kakao.png" alt=""></div>
+   				<div class="txt">카카오톡 상담</div>
+   			</a>
+   		</li>   		
    	</ul>
    </aside>
-   -->
 
 	<div class="popWrap popWrap_footer">
 		<div class="popBg" onClick="popClose()"></div>

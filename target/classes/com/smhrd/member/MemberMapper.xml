@@ -41,4 +41,27 @@
   		select * from tb_upload where id = #{id} order by created_at
   	</select>  		
   	   
+  	   
+  	<select id="newNotice" resultType="com.smhrd.notice.NoticeVO">
+  	  	<![CDATA[SELECT *
+				FROM (
+				    SELECT *
+				    FROM tb_notice
+				    ORDER BY created_at DESC
+				)
+				WHERE ROWNUM <= 5
+				]]>
+  	</select>
+  	
+  	<select id="newReview" resultType="com.smhrd.review.ReviewVO">
+  	  	  	  	<![CDATA[SELECT *
+				FROM (
+				    SELECT *
+				    FROM tb_review
+				    ORDER BY created_at DESC
+				)
+				WHERE ROWNUM <= 5
+				]]>
+  	</select>
+  	   
 </mapper>

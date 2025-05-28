@@ -8,7 +8,8 @@
 			</div>
 		</div>			
 		<div class="inner">
-			<form action="NoticeUpload" method="post" enctype="multipart/form-data">
+			<!-- 새 글이면 NewsUpload, 수정이면 newsEdit -->  
+			<form action="${notice != null ? 'updateNoticeEdit' : 'NoticeUpload'}" method="post" enctype="multipart/form-data">
 				<ul class="write_ul">
 					<li>
 						<span>ID</span>
@@ -16,23 +17,38 @@
 					</li>
 					<li>
 						<span>제목</span>
-						<input type="text" name="notice_title" class="ipt_tt" >
+						<input type="text" name="notice_title" class="ipt_tt" 
+						required value="${notice != null ? notice.notice_title : ''}">
 					</li>
 					<li class="flex_dir_col">
 						<span>내용</span>
 						<div class="post-form">
-							<textarea name="notice_content" id="summernote">
+							<textarea name="notice_content" id="summernote" required>
+							${notice != null ? notice.notice_content : ''}
 							</textarea>
 						</div>  						
 					</li>					
 					<li>
 						<span>첨부파일</span>
-						<input type="file" name="file" class="ipt_tt">
+		            	<div class="is_file">
+		            		<input type="file" name="file" class="ipt_tt"> 
+		            		
+		            		<c:if test="${not empty notice.notice_file}">
+	            			<input type="hidden" name="notice_file" value="${notice.notice_file}" />
+	            			<div class="pre_file_path"><p>${notice.notice_file}</p></div> <!-- 기존 파일 경로 -->                 
+		               		</c:if>
+		               		
+		               	</div>
 					</li>					
 				</ul>
+				
+				<c:if test="${notice != null}">
+		            <input type="hidden" name="notice_idx" value="${notice.notice_idx}" />
+		         </c:if>
+				
 				<div class="bttn_wrap">
 					<a class="bttn bttn_cancle" href="javascript:history.back();">취소</a>
-					<input class="bttn ipt_sbm" type="submit" value="작성완료">					
+					<input class="bttn ipt_sbm" type="submit" value="${notice != null ? '수정완료' : '작성완료'}">					
 				</div>
 			</form>
 		</div>	
@@ -98,7 +114,20 @@
 						console.log(data);
 					}
 				});
-			}			
+			}	
+			
+			$(document).ready(function(){
+				$('.is_file input[name="file"]').on('change', function(){
+				        if(window.FileReader){
+				            // 파일명 추출
+				            var filename = $(this)[0].files[0].name;
+				            console.log(filename);
+				            if(filename != ''){
+				            	$('.pre_file_path').remove();
+				            }
+				        }
+				});
+			});			
 
 		</script>
 	</section>

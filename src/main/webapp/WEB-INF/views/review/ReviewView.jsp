@@ -54,6 +54,20 @@
 										<div style="white-space:pre;" class="answer_content">${answer.cmt_content}</div>
 										<div class="cmt_time"><fmt:formatDate value="${answer.created_at}" pattern="yyyy.MM.dd HH:mm:ss" /></div>									
 									</div>
+									
+									<c:if test="${not empty sessionScope.mvo}">
+										<div class="cmt_like_wrap">
+	                                        <p class="reaction-label">이 답변이 도움이 되셨나요?</p>
+	                                        <form action="commentLike" method="post">
+	                                           <input type="hidden" name="id" value="${sessionScope.mvo.id}" />
+	                                           <input type="hidden" name="review_idx" value="${review.review_idx}" />                                           
+	                                           <input type="hidden" name="cmt_idx" value="${answer.cmt_idx}" />
+	                                           <button type="submit" class="bttn like">👍좋아요&nbsp;&nbsp;${answer.cmt_heart}</button>
+	                                       </form>										
+										</div>
+                                        <!-- <p>좋아요 : 개</p> -->
+                                    </c:if>
+                                    
 		                            <%-- 관리자만 보이는 수정/삭제 버튼 --%>
 		                            <c:if test="${sessionScope.mvo.user_type eq 'ADMIN'}">
 		                            <div class="cmt_bttn bttn_wrap">
@@ -135,8 +149,8 @@
 				   </script>
 				<!-- 해당 글 작성자 / ADMIN만 보임 -->
 				<c:if test="${sessionScope.mvo.id eq review.id or sessionScope.mvo.user_type eq 'ADMIN'}">
-				<button onClick="location.href='ReviewEdit.jsp?no=${review.review_idx}'" class="bttn">수정</button>
-				<button onClick="location.href='ReviewDelete.jsp?no=${review.review_idx}'" class="bttn">삭제</button>
+				<button onClick="location.href='ReviewEdit?no=${review.review_idx}'" class="bttn">수정</button>
+				<button onClick="location.href='ReviewDelete?no=${review.review_idx}'" class="bttn">삭제</button>
 				</c:if>
 			</div>
 			<div class=ml-auto"">

@@ -63,9 +63,9 @@
 				}
 			</script>
 		</div>
-
-	<!-- 넘길 목록 있을때만 페이징 보이게 -->
-	<c:if test="${totalPageCount > 0}">
+		
+		<!-- 넘길 목록 있을때만 페이징 보이게 -->
+		<c:if test="${totalPageCount > 1}">
 		<!-- 페이징 -->
 		<div class="pg_wrap">
 			<nav>
@@ -79,22 +79,22 @@
 					</c:if>
 
 					<%-- 페이지 번호 반복 --%>
-					<c:forEach var="i" begin="${startPageNum}" end="${endPageNum}">
-						<c:choose>
-							<c:when
-								test="${not empty searchValue and not empty searchContent}">
-								<li class="page-item ${pageNum == i ? 'active' : ''}"><a
-									class="page-link animate__animated"
-									href="NoticeSearch?pageNum=${i}&searchValue=${searchValue}&searchContent=${searchContent}">
-										${i} </a></li>
-							</c:when>
-							<c:otherwise>
-								<li class="page-item ${pageNum == i ? 'active' : ''}"><a
-									class="page-link animate__animated"
-									href="NoticeList?pageNum=${i}"> ${i} </a></li>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
+						<c:forEach var="i" begin="${startPageNum}" end="${endPageNum}">
+							<c:choose>
+								<c:when
+									test="${not empty searchValue and not empty searchContent}">
+									<li class="page-item ${pageNum == i ? 'active' : ''}"><a
+										class="page-link animate__animated"
+										href="NoticeSearch?pageNum=${i}&searchValue=${searchValue}&searchContent=${searchContent}">
+											${i} </a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item ${pageNum == i ? 'active' : ''}"><a
+										class="page-link animate__animated"
+										href="NoticeList?pageNum=${i}"> ${i} </a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
 
 					<%-- 마지막 페이지가 아니면 '>' 버튼 활성화 --%>
 					<c:if test="${pageNum < totalPageCount}">
@@ -106,7 +106,7 @@
 				</ul>
 			</nav>
 		</div>
-	</c:if>
+		</c:if>
 		<!-- 검색창 -->
 		<div class="search_form">
 			<form action="NoticeSearch">

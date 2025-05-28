@@ -40,4 +40,16 @@ public class ReviewService {
     public int deleteReviewAnswer(ReviewVO vo) {
         return reviewMapper.deleteReviewAnswer(vo);
     }
+    
+ // 글 수정 삭제
+    public int updateReviewEdit(ReviewVO vo) {
+        return reviewMapper.updateReviewEdit(vo);
+    }
+    public int deleteReview(int review_idx) {
+        // 1. 먼저 해당 Review 글에 연결된 답변 삭제
+        reviewMapper.deleteReviewAnswerByReviewIdx(review_idx);
+        
+        // 2. 그런 다음 Review 글 삭제
+        return reviewMapper.deleteReviewByNo(review_idx);
+    }
 }

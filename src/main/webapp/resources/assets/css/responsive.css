@@ -1,0 +1,37 @@
+@media (max-width: 1220px) {
+	.inner:not(.inner_500, .inner_400){
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+	}
+}
+
+@media (max-width: 768px) {
+	.floating{
+		background: 0;
+		padding: 0;
+		border-radius: 50%;
+	}
+	.floating_ul > li:not(:last-child){
+		display: none;
+	}
+	.floating_ul > li + li{
+		margin: 0;
+	}
+	.floating_ul .txt{
+		display: none;
+	}
+}
+
+@media (max-width: 520px) {
+	.inner_500{
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+	}
+}
+
+@media (max-width: 420px) {
+	.inner_400{
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+	}	
+}

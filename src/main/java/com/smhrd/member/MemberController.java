@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.smhrd.notice.NoticeVO;
+import com.smhrd.review.ReviewVO;
 import com.smhrd.upload.UploadVO;
 
 @Controller
@@ -36,10 +38,17 @@ public class MemberController {
     ServletContext context;
 
     @RequestMapping("/")
-    public String main() {
+    public String main(Model model) {
+    	
+    	List<NoticeVO> new_notice = mapper.newNotice();
+    	List<ReviewVO> new_review = mapper.newReview();
+    	
+    	model.addAttribute("new_notice", new_notice);
+    	model.addAttribute("new_review", new_review);
+    	
         return "Main"; // 메인 페이지 뷰 이름
     }
-    
+
     @RequestMapping("/about")
     public String about() {
         return "About"; // 소개 페이지 이동

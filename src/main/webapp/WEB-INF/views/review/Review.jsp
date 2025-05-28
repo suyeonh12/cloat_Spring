@@ -71,7 +71,7 @@
       
 
 	<!-- 넘길 목록 있을때만 페이징 보이게 -->
-	<c:if test="${totalPageCount > 0}">
+	<c:if test="${totalPageCount > 1}">
       <!-- 페이징 -->
       <div class="pg_wrap">
          <nav>

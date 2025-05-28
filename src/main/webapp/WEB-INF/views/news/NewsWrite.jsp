@@ -8,33 +8,52 @@
 			</div>
 		</div>			
 		<div class="inner">
-			<form action="NewsUpload" method="post" enctype="multipart/form-data">
-				<ul class="write_ul">
-					<li>
-						<span>ID</span>
-						<input type="text" name="admin_id" value= ${mvo.id} class="ipt_tt" readonly> <!-- 로그인한 작성자 아이디 불러오기 -->
-					</li>
-					<li>
-						<span>제목</span>
-						<input type="text" name="news_title" class="ipt_tt" >
-					</li>
-					<li class="flex_dir_col">
-						<span>내용</span>
-						<div class="post-form">
-							<textarea name="news_content" id="summernote">
-							</textarea>
-						</div>  						
-					</li>					
-					<li>
-						<span>첨부파일</span>
-						<input type="file" name="file" class="ipt_tt">
-					</li>					
-				</ul>
-				<div class="bttn_wrap">
-					<a class="bttn bttn_cancle" href="javascript:history.back();">취소</a>
-					<input class="bttn ipt_sbm" type="submit" value="작성완료">					
-				</div>
-			</form>
+			<!-- 새 글이면 NewsUpload, 수정이면 newsEdit -->  
+		      <form action="${news != null ? 'updateNewsEdit' : 'NewsUpload'}"
+		         method="post" enctype="multipart/form-data">
+		         <ul class="write_ul">
+		            <li>
+		            	<span>ID</span> 
+		            	<input type="text" name="admin_id" value="${mvo.id}" 
+		            	class="ipt_tt" readonly>
+		            </li>
+		            <li>
+		            	<span>제목</span> 
+		            	<input type="text" name="news_title" class="ipt_tt"
+		             	required value="${news != null ? news.news_title : ''}">
+		            </li>
+		            <li class="flex_dir_col">
+		            	<span>내용</span> 
+		            	<div class="post-form">
+		            		<textarea name="news_content" id="summernote" required>
+		            		${news != null ? news.news_content : ''}
+		            		</textarea>
+		            	</div>
+		            </li>
+		            <li>
+		            	<span>첨부파일</span> 
+		            	<div class="is_file">
+		            		<input type="file" name="file" class="ipt_tt"> 
+		            		
+		            		<c:if test="${not empty news.news_file}">
+	            			<input type="hidden" name="news_file" value="${news.news_file}" />
+	            			<div class="pre_file_path"><p>${news.news_file}</p></div> <!-- 기존 파일 경로 -->                 
+		               		</c:if>
+		               		
+		               	</div>
+		            </li>
+		
+		         </ul>
+		
+		         <c:if test="${news != null}">
+		            <input type="hidden" name="news_idx" value="${news.news_idx}" />
+		         </c:if>
+		
+		         <div class="bttn_wrap">
+		         	<a class="bttn bttn_cancle" href="javascript:history.back();">취소</a>
+		            <input class="bttn ipt_sbm" type="submit" value="${news != null ? '수정완료' : '작성완료'}">
+		         </div>
+		      </form>
 		</div>	
 		<script>
 			$('#summernote').summernote({
@@ -98,7 +117,20 @@
 						console.log(data);
 					}
 				});
-			}			
+			}	
+			
+			$(document).ready(function(){
+				$('.is_file input[name="file"]').on('change', function(){
+				        if(window.FileReader){
+				            // 파일명 추출
+				            var filename = $(this)[0].files[0].name;
+				            console.log(filename);
+				            if(filename != ''){
+				            	$('.pre_file_path').remove();
+				            }
+				        }
+				});
+			});			
 
 		</script>
 	</section>

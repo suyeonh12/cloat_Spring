@@ -19,4 +19,13 @@ public class NoticeService {
         int noticeIdx = Integer.parseInt(reNum);
         return mapper.getNotice(noticeIdx);
     }
+    
+    // 글 수정 삭제
+    public int updateNoticeEdit(NoticeVO vo) {
+        return mapper.updateNoticeEdit(vo);
+    }
+    public int deleteNotice(int news_idx) {
+               
+        return mapper.deleteNoticeByNo(news_idx);
+    }
 }

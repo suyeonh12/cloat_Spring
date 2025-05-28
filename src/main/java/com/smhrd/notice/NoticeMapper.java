@@ -28,4 +28,9 @@ public interface NoticeMapper {
 
 	public List<NoticeVO> NoticeSearch(@Param("searchValue") String searchValue, @Param("searchContent") String searchContent,
 			@Param("startRow") int startRow, @Param("endRow") int endRow);
+	
+	public int updateNoticeEdit(NoticeVO vo);   // 씀
+	NoticeVO selectNoticeByNo(int news_idx);  // 씀
+	int deleteNoticeByNo(int news_idx);
+	
 }

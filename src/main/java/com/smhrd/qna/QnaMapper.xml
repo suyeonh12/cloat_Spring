@@ -24,6 +24,9 @@
 				<when test="searchValue == 'qna_content'">
 					qna_content LIKE '%' || #{searchContent} || '%'
 				</when>
+				<when test="searchValue == 'id'">
+					id LIKE '%' || #{searchContent} || '%'
+				</when>
 				<otherwise>
 					id is null
 				</otherwise>
@@ -91,7 +94,31 @@
    </insert>
    
    
+   <!-- 글 수정 기능 -->
+   <select id="selectQnaByNo" parameterType="int"
+      resultType="com.smhrd.qna.QnaVO">
+      SELECT qna_idx, qna_title, qna_content, qna_file, qna_views,
+      id, created_at
+      FROM tb_qna
+      WHERE qna_idx = #{qna_idx}
+   </select>
+
+   <update id="updateQnaEdit"
+      parameterType="com.smhrd.qna.QnaVO">
+      UPDATE tb_qna
+      SET qna_title = #{qna_title},
+      qna_content = #{qna_content},
+      qna_file = #{qna_file, jdbcType=VARCHAR}
+      WHERE qna_idx = #{qna_idx}
+   </update>
    
+   <!-- 게시글 삭제 -->
+   <delete id="deleteQnaByNo" parameterType="int">
+      DELETE FROM tb_qna WHERE qna_idx = #{qna_idx}
+   </delete>
+   <delete id="deleteQnaAnswerByQnaIdx" parameterType="int">
+      DELETE FROM tb_answer WHERE qna_idx = #{qna_idx}
+   </delete>
    
    
    

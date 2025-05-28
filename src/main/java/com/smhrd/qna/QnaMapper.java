@@ -39,5 +39,10 @@ public interface QnaMapper {
    public int updateQnaAnswer(QnaVO vo); // 답변 수정
    public int deleteQnaAnswer(QnaVO vo); // 답변 삭제
    
+   public int updateQnaEdit(QnaVO vo);   // 씀
+   QnaVO selectQnaByNo(int qna_idx);  // 씀
+   int deleteQnaByNo(int qna_idx);
+   int deleteQnaAnswerByQnaIdx(int qna_idx);
+   
    public List<QnaVO> MyQna(@Param("startRow") int startRow, @Param("endRow") int endRow, @Param("id") String id); // 마이페이지 - 내가 쓴 문의
 }

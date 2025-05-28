@@ -93,7 +93,28 @@
 		)
 	</insert>
     
-    
+    <!-- 글 수정 기능 -->
+   <select id="selectNoticeByNo" parameterType="int"
+      resultType="com.smhrd.notice.NoticeVO">
+      SELECT notice_idx, notice_title, notice_content, notice_file, notice_views,
+      admin_id, created_at
+      FROM tb_notice
+      WHERE notice_idx = #{notice_idx}
+   </select>
+
+   <update id="updateNoticeEdit"
+      parameterType="com.smhrd.notice.NoticeVO">
+      UPDATE tb_notice
+      SET notice_title = #{notice_title},
+      notice_content = #{notice_content},
+      notice_file = #{notice_file, jdbcType=VARCHAR}
+      WHERE notice_idx = #{notice_idx}
+   </update>
+   
+    <!-- 게시글 삭제 -->
+   <delete id="deleteNoticeByNo" parameterType="int">
+      DELETE FROM tb_notice WHERE notice_idx = #{notice_idx}
+   </delete>
     
 
 </mapper>

@@ -134,8 +134,8 @@
 				   </script>	        	
 	            <!-- 해당 글 작성자 또는 관리자일 경우 버튼 표시 -->
 				<c:if test="${sessionScope.mvo.id eq qna.id or sessionScope.mvo.user_type eq 'ADMIN'}">
-	                <button onClick="location.href='QnaEdit.jsp?no=${qna.qna_idx}'" class="bttn">수정</button>
-	                <button onClick="location.href='QnaDelete.jsp?no=${qna.qna_idx}'" class="bttn">삭제</button>				
+	                <button onClick="location.href='QnaEdit?no=${qna.qna_idx}'" class="bttn">수정</button>
+	                <button onClick="location.href='QnaDelete?no=${qna.qna_idx}'" class="bttn">삭제</button>				
 	            </c:if>
             </div>
            	<div class="ml-auto">

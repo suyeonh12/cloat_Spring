@@ -39,5 +39,18 @@ public class QnaService {
     public int deleteQnaAnswer(QnaVO vo) {
         return qnaMapper.deleteQnaAnswer(vo);
     }
+    
+ // 글 수정 삭제
+    public int updateQnaEdit(QnaVO vo) {
+        return qnaMapper.updateQnaEdit(vo);
+    }
+    public int deleteQna(int qna_idx) {
+        // 1. 먼저 해당 Qna 글에 연결된 답변 삭제
+        qnaMapper.deleteQnaAnswerByQnaIdx(qna_idx);
+        
+        // 2. 그런 다음 Qna 글 삭제
+        return qnaMapper.deleteQnaByNo(qna_idx);
+    }
+    
 
 }

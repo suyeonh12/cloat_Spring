@@ -36,5 +36,10 @@ public interface ReviewMapper {
    public int updateReviewAnswer(ReviewVO vo); // 답변 수정
    public int deleteReviewAnswer(ReviewVO vo); // 답변 삭제
  
+   public int updateReviewEdit(ReviewVO vo);   // 씀
+   ReviewVO selectReviewByNo(int review_idx);  // 씀
+   int deleteReviewByNo(int review_idx);
+   int deleteReviewAnswerByReviewIdx(int review_idx);
+   
    public List<ReviewVO> MyReview(@Param("startRow") int startRow, @Param("endRow") int endRow, @Param("id") String id); // 마이페이지 - 내가 쓴 후기
 }

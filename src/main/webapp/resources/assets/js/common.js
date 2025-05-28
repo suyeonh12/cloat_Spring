@@ -43,11 +43,11 @@ $(document).on('click', '.about-link > li > a', function(e) {
         }
     } else {
         e.preventDefault();
-        if(targetHash == "#why"){
-        	window.location.href = aboutPage;
-        }else{
+        //if(targetHash == "#why"){
+        	//window.location.href = aboutPage;
+        //}else{
         	window.location.href = aboutPage + targetHash;
-        }
+        //}
     }
 });
 

@@ -21,6 +21,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>	 
 <!-- summernote 에디터 cdn, css 충돌 위험 가능하면 에디터 사용 페이지에서만 추가되도록-->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
 <script src="${pageContext.request.contextPath}/resources/assets/js/common.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/aos_style.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/aos.css" />
@@ -36,9 +37,9 @@
             <li>
                <a href="about">CLOAT</a>
                <ul class="depth2 about-link">
-                  <li><a href="about?#why">WHY?</a></li>
-                  <li><a href="about?#what">WHAT IS?</a></li>
-                  <li><a href="about?#how">HOW?</a></li>
+                  <li><a href="about?#why">Why?</a></li>
+                  <li><a href="about?#what">What is?</a></li>
+                  <li><a href="about?#how">How?</a></li>
                   <li><a href="about?#team">팀 소개</a></li>
                   <li><a href="about?#vision">비전</a></li>
                </ul>
