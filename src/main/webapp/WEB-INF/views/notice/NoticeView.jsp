@@ -15,8 +15,8 @@
                 <h3 class="view_title">${notice.notice_title}</h3>
                 <div class="view_info">
                     <div class="view_info_lt">
-                        <p><span>작성자</span> ${notice.admin_id}</p>
-                        <p><span>조회수</span> ${notice.notice_views}</p>
+                        <p><span>작성자</span>${notice.admin_id}</p>
+                        <p><span>조회수</span>${notice.notice_views}</p>
                     </div>
                     <div class="view_info_rt">
                         <p><span>작성날짜</span><fmt:formatDate value="${notice.created_at}" pattern="yyyy.MM.dd HH:mm:ss" /></p>

@@ -15,8 +15,8 @@
                 <h3 class="view_title">${qna.qna_title}</h3>
                 <div class="view_info">
                     <div class="view_info_lt">
-                        <p><span>작성자</span> ${qna.id}</p>
-                        <p><span>조회수</span> ${qna.qna_views}</p>
+                        <p><span>작성자</span>${qna.id}</p>
+                        <p><span>조회수</span>${qna.qna_views}</p>
                     </div>
                     <div class="view_info_rt">
                         <p><span>작성날짜</span><fmt:formatDate value="${qna.created_at}" pattern="yyyy.MM.dd HH:mm:ss" /></p>

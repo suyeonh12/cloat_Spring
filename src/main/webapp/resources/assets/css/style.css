@@ -116,7 +116,7 @@ input:focus-visible, input[type=checkbox]:focus-visible, input[type=file]:focus-
 }
 .ipt_tt{
     padding: 10px 14px;
-    font-size: 16px;
+    font-size: 1rem;
     border: solid 1px gray;
     border-radius: 4px;
 }
@@ -680,17 +680,18 @@ text-align: center;
 .view_info{
     display: flex;
     justify-content: space-between;
-	gap: 6px;	
+	gap: 4px 6px;	
+	font-size: 85%;	
 }
 .view_info > div{
 	display: flex;
 	flex-wrap: wrap;
 	gap: 2px 16px;
 	white-space: wrap;
-	font-size: .85rem;
 }
 .view_btm{
 	padding: 6px 10px 16px;
+	font-size: 1rem;
 }
 .view_content{
 	line-height: 1.444;
@@ -2036,7 +2037,7 @@ text-align: center;
 	color: #000;
 }
 .mo_hd_util a{
-	font-size: 16px;
+	font-size: 1rem;
 }
 .mo_hd_util.btm > a + a{
 	margin-top: 10px;
