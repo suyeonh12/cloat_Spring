@@ -12,7 +12,7 @@
 				<video src="resources/images/intro.mp4" autoplay muted loop class="main_vd"></video>
 			</div>
 			<div class="txt">
-				<h2 class="tit" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">내 얼굴, 더는 노출되지 않게</h2>
+				<div class="tit" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">내 얼굴, 더는 노출되지 않게</div>
 				<p class="desc" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">딥페이크로부터 나를 지키는 가장 쉬운 방법</p>
 				<div data-aos="fade-up" data-aos-duration="800" data-aos-delay="1200">
 					<a href="service" class="bttn bttn_sbm2 wh">클로킹 서비스 바로가기</a>	

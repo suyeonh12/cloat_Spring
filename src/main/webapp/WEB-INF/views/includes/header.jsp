@@ -33,12 +33,7 @@
       <div class="inner">
          <h1 class="logo">
             <a href="${pageContext.request.contextPath}"><img src="resources/images/logo.svg" alt=""></a>
-         </h1>
-		<div class="ham vw_mo" onClick="menuToggle()">
-			<div class="ham_bar"></div>
-			<div class="ham_bar"></div>
-			<div class="ham_bar"></div>
-		</div>         
+         </h1>                  
          <ul class="depth">
             <li>
                <a href="about">CLOAT</a>
@@ -73,16 +68,31 @@
          		<a href="mypage">마이페이지</a>
          		<a href="logout">로그아웃</a>
             </c:when>
-         <c:otherwise>          
-            <a href="join">회원가입</a>
-            <a href="login">로그인</a>
-         </c:otherwise>
-        </c:choose> 
+	         <c:otherwise>          
+	            <a href="join">회원가입</a>
+	            <a href="login">로그인</a>
+	         </c:otherwise>
+	     </c:choose> 
          </div>
       </div>
-   </header>
+	<div class="ham vw_mo" onClick="menuToggle()">
+		<div class="ham_bar"></div>
+		<div class="ham_bar"></div>
+		<div class="ham_bar"></div>
+	</div>      
 	<div class="menu_wrap vw_mo">
-		<div class="nav">
+		<div class="mo_nav">
+	    	<div class="mo_hd_util top">
+	         <c:choose>
+	         	<c:when test="${not empty mvo}">
+	         		<p class="mb_name"><b>${mvo.name}</b> 님 <br> 환영합니다!</p>
+	            </c:when>
+		         <c:otherwise>          
+		            <a href="join">회원가입</a>
+		            <a href="login">로그인</a>
+		         </c:otherwise>
+		     </c:choose> 
+			</div>				
 			<ul class="menu">
 			   <li>
 			      <a class="mo_link">CLOAT</a>
@@ -110,5 +120,12 @@
 			      </ul>
 			   </li>
 			</ul>
+         	<c:if test="${not empty mvo}">
+         	<div class="mo_hd_util btm">
+         		<a href="mypage">마이페이지</a>
+         		<a href="logout" class="c_gray">로그아웃</a>
+         	</div>
+            </c:if>			
 		</div>
-	</div>   
+	</div>      
+   </header>   

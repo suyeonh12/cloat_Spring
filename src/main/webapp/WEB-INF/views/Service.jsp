@@ -14,7 +14,7 @@
 		<div class="service">
 		
 			<p class="clk_intro">CLOAT만의 이미지 클로킹 서비스로 <br>안심하고 당신의 순간을 공유하세요</p>
-			<small class="clk_info"><span class="marker">❗</span> 로그인 하시면 '마이 페이지 - 나의 갤러리'에서 제공하는 변환 이미지 클라우드 기능을 이용하실 수 있습니다.</small>
+			<small class="clk_info"><span class="marker">❗</span> 로그인 하시면 '마이 페이지 - 나의 갤러리'에서 제공하는 <br class="d_none">변환 이미지 클라우드 기능을 이용하실 수 있습니다.</small>
 			
 			<div class="inner inner_400">
 				<div class="clk_wrap">

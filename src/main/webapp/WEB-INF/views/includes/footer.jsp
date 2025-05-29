@@ -10,11 +10,36 @@
                </ul>
                <p>
                   <strong>주소</strong>
-                  서울 마포구 양화로 85 5층  2025 CLOAT All Rights Reserved.
+                  <span>서울 마포구 양화로 85 5층</span>&nbsp;<span class="copy">2025 CLOAT All Rights Reserved.</span>
                </p>
             </div>
          </div>
    </footer>
+   
+   <div class="mo_btm_util vw_mo">
+   	<ul class="btm_util">
+   		<li>
+   			<a href="">
+   				<div class="thum"><img alt="" src=""></div>
+   			</a>
+   		</li>
+   		<li>
+   			<a href="">
+   				<div class="thum"><img alt="" src=""></div>
+   			</a>
+   		</li>
+   		<li>
+   			<a href="">
+   				<div class="thum"><img alt="" src=""></div>
+   			</a>
+   		</li>
+   		<li>
+   			<a href="">
+   				<div class="thum"><img alt="" src=""></div>
+   			</a>
+   		</li>   		   		   		
+   	</ul>
+   </div>
     
    
    <aside class="floating">
