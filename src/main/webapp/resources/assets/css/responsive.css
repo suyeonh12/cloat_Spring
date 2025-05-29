@@ -47,6 +47,21 @@
 	.main_good_ul > li{
 		width: calc(50% - 10px);
 	}
+	
+	/* CLOAT - 소개 */
+	.team_ul{
+		flex-wrap: wrap;
+		max-width: 700px;
+		margin: 4px auto 10px;
+	}
+	.team_ul li{
+		width: calc(50% - 24px);
+       	height: auto;
+	}
+	.team_ul li:nth-child(even){
+		margin: 0;
+	}
+	
 }
 
 @media (max-width: 992px) {
@@ -136,6 +151,11 @@
 		margin: 24px 0;
 	}
 	
+	/* 서비스*/
+	.mypage .my_gall{
+		 gap: 24px 16px;
+	}
+	
 }
 
 
@@ -191,6 +211,10 @@
 		width: 340px;
 	}
 	
+	.tb{
+	 	font-size: 14px;
+	}
+	
 	/* 헤더 */
 	.header.scrl .logo{
 		transform: none;
@@ -200,6 +224,9 @@
 	}
 	
 	/* 푸터 */
+	.footer{
+		margin-bottom: 70px;
+	}
 	.footer > .inner{
 		flex-direction: column;
         gap: 16px;
@@ -217,13 +244,13 @@
 	
 	
 	/* 플로팅 */
-	/*.floating{
-		bottom: 70px;
-	}*/
+	.floating{
+		bottom: 80px;
+	}
 	
 	/* 모바일 하단 */
 	.mo_btm_util{
-		display: block;
+		display: flex;
 	}
 	
 	
@@ -305,7 +332,9 @@
 @media (max-width: 580px) {
 	
 	/* 공통 */
-
+	.tb{
+	 	font-size: 12px;
+	}	
 	
 	/* 메인 */
 	.main_banner .thum{
@@ -339,6 +368,24 @@
 		font-size: 15px;
 	}
 	
+	/* 서비스 */
+	.clk_wrap, .clk_bttn_wrap{
+		max-width: 360px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	/* CLOAT - 소개 */
+	.team_ul{
+		flex-direction: column;
+	}
+	.team_ul > li{
+		width: 100%;
+	}
+	.team_ul .thumb{
+		width: 120px;
+	}
+	
 	
 }
 
@@ -358,6 +405,14 @@
 	.main_banner .desc{
 		font-size: 75%;
 	}	
+	
+	/* 서비스 */
+	.clk_info{
+		display: block;
+	}
+	.clk_info .d_none{
+		display: none;
+	}
 	
 	
 }

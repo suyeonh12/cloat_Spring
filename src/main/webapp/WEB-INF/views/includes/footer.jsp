@@ -19,23 +19,35 @@
    <div class="mo_btm_util vw_mo">
    	<ul class="btm_util">
    		<li>
-   			<a href="">
-   				<div class="thum"><img alt="" src=""></div>
+   			<a href="${pageContext.request.contextPath}">
+   				<div class="thum">
+   					<img alt="" src="resources/images/util_home.png">
+   				</div>
+   				<div class="txt">홈</div>
    			</a>
    		</li>
    		<li>
-   			<a href="">
-   				<div class="thum"><img alt="" src=""></div>
+   			<a href="service">
+   				<div class="thum">
+   					<img alt="" src="resources/images/util_service.png">
+   				</div>
+   				<div class="txt">사진변환</div>
    			</a>
    		</li>
    		<li>
-   			<a href="">
-   				<div class="thum"><img alt="" src=""></div>
+   			<a href="ReviewList">
+   				<div class="thum">
+   					<img alt="" src="resources/images/util_review.png">
+   				</div>
+   				<div class="txt">후기</div>
    			</a>
    		</li>
    		<li>
-   			<a href="">
-   				<div class="thum"><img alt="" src=""></div>
+   			<a href="mypage">
+   				<div class="thum">
+   					<img alt="" src="resources/images/util_my.png">
+   				</div>
+   				<div class="txt">MY</div>
    			</a>
    		</li>   		   		   		
    	</ul>
@@ -88,6 +100,15 @@
 	  AOS.init({
 		easing: 'ease-out'
 	  });
+	  
+	  $(function(){
+			AOS_MOBILE(); // 반응형 코드
+		});
+
+		$(window).resize(function() { //윈도우 사이즈 변할때마다 적용
+			AOS_MOBILE();
+		});
+		
 	</script>
 	<!--aos-->	
 	<script>

@@ -38,7 +38,7 @@
 	</update>	
 	
   	<select id="getTransformed_file" resultType="com.smhrd.upload.UploadVO">
-  		select * from tb_upload where id = #{id} order by created_at
+  		select * from tb_upload where id = #{id} order by created_at DESC
   	</select>  		
   	   
   	   

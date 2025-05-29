@@ -95,7 +95,7 @@
 							</li>								
 						</ul>							
 					<div class="bttn_wrap">
-						<a href="/MyGallery" class="bttn bttn_cancle">취소</a>
+						<a href="MyGallery" class="bttn bttn_cancle">취소</a>
 						<input type="submit" value="회원정보수정" class="bttn bttn_sbm2">
 					</div>	
 					<div class="tar">

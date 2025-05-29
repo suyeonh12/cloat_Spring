@@ -26,45 +26,37 @@
 		<div class="inner">
 			<h2 class="main_tit" data-aos="fade-up" data-aos-duration="800"><span class="c_main">CLOAT</span> 는 합니다</h2>
 			<ul class="main_good_ul">
-				<li>
-					<div class="box" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-						<div class="txt">
-							<p class="tit">걱정없이 안전하게</p>
-							<p class="desc">클로킹 서비스로<br> 딥페이크에서 벗어나 <br>안전한 디지털 라이프를 <br>누려보세요!</p>						
-						</div>
+				<li data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+					<div class="box">
+						<p class="tit">걱정없이 안전하게</p>
+						<p class="desc">클로킹 서비스로<br> 딥페이크에서 벗어나 <br>안전한 디지털 라이프를 <br>누려보세요!</p>
 						<div class="thum">
 							<img src="resources/images/main_good_1.png" alt="" >
 						</div>					
 					</div>
 				</li>		
-				<li>
-					<div class="box" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
-						<div class="txt">
-							<p class="tit">금전부담 전혀없는</p>
-							<p class="desc">CLOAT는 공익을 위해 <br>모든 서비스를 <br>무료로 제공합니다</p>
-						</div>
+				<li data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+					<div class="box">
+						<p class="tit">금전부담 전혀없는</p>
+						<p class="desc">CLOAT는 공익을 위해 <br>모든 서비스를 <br>무료로 제공합니다</p>
 						<div class="thum">
 							<img src="resources/images/main_good_2.png" alt="">
 						</div>							
 					</div>
 				</li>				
-				<li>
-					<div class="box" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
-						<div class="txt">
-							<p class="tit">어디서나 편안하게</p>
-							<p class="desc">휴대폰으로도 문제 없어요. <br>어느 기기에서나 <br>편리하게 이용하세요</p>
-						</div>
+				<li data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+					<div class="box">
+						<p class="tit">어디서나 편안하게</p>
+						<p class="desc">휴대폰으로도 문제 없어요. <br>어느 기기에서나 <br>편리하게 이용하세요</p>
 						<div class="thum">
 							<img src="resources/images/main_good_3.png" alt="" >
 						</div>							
 					</div>
 				</li>	
-				<li>
-					<div class="box" data-aos="fade-up" data-aos-duration="800" data-aos-delay="800">
-						<div class="txt">
-							<p class="tit">헤매지말고 한번에</p>
-							<p class="desc">딥페이크 관련 예방 컨텐츠 제공, <br>딥페이크 방지 이미지 클로킹 서비스, <br>유관센터 지도 등 <br>전반적인 딥페이크 대응 관련 <br>서비스를 제공합니다</p>
-						</div>
+				<li data-aos="fade-up" data-aos-duration="800" data-aos-delay="800">
+					<div class="box">
+						<p class="tit">헤매지말고 한번에</p>
+						<p class="desc">딥페이크 관련 예방 컨텐츠 제공, <br>딥페이크 방지 이미지 클로킹 서비스, <br>유관센터 지도 등 <br>전반적인 딥페이크 대응 관련 <br>서비스를 제공합니다</p>
 						<div class="thum">
 							<img src="resources/images/main_good_4.png" alt="" >
 						</div>							
@@ -116,5 +108,26 @@
 
 
 </section>
+<script>
+  function AOS_MOBILE() {
+
+	if (matchMedia("screen and (min-width: 1220px)").matches) { //1220px 이상에서 모두 적용
+
+		$('.main_good_ul > li:nth-child(1)').attr('data-aos-delay', '200');
+		$('.main_good_ul > li:nth-child(2)').attr('data-aos-delay', '400');
+		$('.main_good_ul > li:nth-child(3)').attr('data-aos-delay', '600');
+		$('.main_good_ul > li:nth-child(4)').attr('data-aos-delay', '800');
+	}
+
+	if (matchMedia("screen and (max-width: 1220px)").matches) {
+
+		$('.main_good_ul > li:nth-child(1)').attr('data-aos-delay', '200');
+		$('.main_good_ul > li:nth-child(2)').attr('data-aos-delay', '400');
+		$('.main_good_ul > li:nth-child(3)').attr('data-aos-delay', '200');
+		$('.main_good_ul > li:nth-child(4)').attr('data-aos-delay', '400');
+	}
+	
+  }   
+</script>
    
 <%@include file="/WEB-INF/views/includes/footer.jsp" %>

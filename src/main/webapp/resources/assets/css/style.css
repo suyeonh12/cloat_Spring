@@ -685,7 +685,7 @@ text-align: center;
 .view_info > div{
 	display: flex;
 	flex-wrap: wrap;
-	gap: 16px;
+	gap: 2px 16px;
 	white-space: wrap;
 	font-size: .85rem;
 }
@@ -869,6 +869,7 @@ text-align: center;
 	border-top: solid 1px black;
 	border-right: solid 1px gray;
 	padding: 8px 6px;
+    word-break: auto-phrase;
 }
 .tb th:last-child, .tb td:last-child{
 	border-right: 0;
@@ -1548,9 +1549,9 @@ text-align: center;
 	position: relative;
     outline: none;
     border: 0;
-	/*-webkit-mask-image: -webkit-radial-gradient(white, black);
+	-webkit-mask-image: -webkit-radial-gradient(white, black);
     -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;*/   	
+    -moz-backface-visibility: hidden;   	
 }
 .main_banner .thum:before{
     display: block;
@@ -1826,14 +1827,12 @@ text-align: center;
 }
 .team_ul {
 	display: flex;
-	flex-wrap: wrap;
 	align-items: flex-start;
     justify-content: center;
     gap: 24px;
     margin: 0 20px 20px;
 }
 .team_ul li {
-	flex: 1 1 200px;
 	background: var(--sub);
 	padding: 24px 16px 30px;
 	border-radius: 10px;
@@ -1843,6 +1842,7 @@ text-align: center;
 	flex-direction: column;
 	gap: 4px;
     min-height: 320px;
+    width: 25%;
 }
 .team_ul li:nth-child(even){
 	margin-top: 40px;
@@ -2059,18 +2059,43 @@ text-align: center;
 }
 
 /* 모바일 하단 */
+.mo_btm_util{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;	
+	z-index: 500;
+	border-top: solid 1px #eee;	
+	display: flex;
+	align-items: center;
+	background: #fff;	
+}
 .btm_util{
 	display: flex;
+	width: 100%;
+	max-width: 768px;
+	margin: 0 auto;
 }
 .btm_util > li{
 	flex: 1;
 }
 .btm_util > li > a{
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
 	height: 100%;
+	gap: 3px;
+	padding: 4px;
 }
-
+.btm_util .thum{
+	width: 36px;
+}
+.btm_util .thum img{
+	width: 100%;
+}
+.btm_util .txt{
+	font-size: 14px;
+}
 

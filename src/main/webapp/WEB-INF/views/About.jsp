@@ -199,21 +199,46 @@
          </ul>
       </div>	 -->
    </div>
-
-   <script>
-      $(document).ready(function () {
-         if (window.location.pathname.endsWith('about') && window.location.hash) {
-            let h_height = $('.header').outerHeight();
-            let target = $(window.location.hash);
-            if (target.length) {
-                  setTimeout(function () {
-                     $('html, body').scrollTop(target.offset().top - h_height);
-                  }, 50);
-            }
-         }
-      });
-   </script>
-
 </section>
+
+<script>
+  $(document).ready(function () {
+     if (window.location.pathname.endsWith('about') && window.location.hash) {
+        let h_height = $('.header').outerHeight();
+        let target = $(window.location.hash);
+        if (target.length) {
+              setTimeout(function () {
+                 $('html, body').scrollTop(target.offset().top - h_height);
+              }, 50);
+        }
+     }
+  });
+</script>
+<script>
+  function AOS_MOBILE() {
+
+	if (matchMedia("screen and (min-width: 1220px)").matches) { //1220px 이상에서 모두 적용
+
+		$('.team_ul > li:nth-child(2)').attr('data-aos-delay', '300');
+		$('.team_ul > li:nth-child(3)').attr('data-aos-delay', '600');
+		$('.team_ul > li:nth-child(4)').attr('data-aos-delay', '900');
+	}
+
+	if (matchMedia("screen and (max-width: 1220px)").matches) {
+
+		$('.team_ul > li:nth-child(2)').attr('data-aos-delay', '200');
+		$('.team_ul > li:nth-child(3)').attr('data-aos-delay', '');
+		$('.team_ul > li:nth-child(4)').attr('data-aos-delay', '200');
+	}
+	
+	if (matchMedia("screen and (max-width: 768px)").matches) {
+
+		$('.team_ul > li:nth-child(2)').attr('data-aos-delay', '');
+		$('.team_ul > li:nth-child(3)').attr('data-aos-delay', '');
+		$('.team_ul > li:nth-child(4)').attr('data-aos-delay', '');
+	}
+	
+}   
+</script>
    
 <%@include file="/WEB-INF/views/includes/footer.jsp" %>
