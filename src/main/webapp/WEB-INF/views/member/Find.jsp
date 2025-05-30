@@ -186,7 +186,7 @@
                     //$('#sendPw').text(data);
                     $(".popWrap_find").show();
         			$("html, body").css('overflow','hidden');
-        			$(".pop_tit").text("아이디 찾기");
+        			$(".pop_tit").text("비밀번호 찾기");
         			$(".pop_cont").html(id+"님의 비밀번호는 <br><b>"+data+"</b>입니다.");        
                 },
 				error: function(xhr, status, error) {
